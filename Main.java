@@ -18,12 +18,12 @@ public class Main {
     public static void main(String[] args) {
 
 
-        if(args.length < 1){
+        if (args.length < 1) {
             System.out.println("Error: please specify a file name/path.");
             return;
         }
 
-	    try{
+        try {
             reader = new BufferedReader(new FileReader(args[0]));
             lines = new ArrayList<>();
             toParse = new ArrayList<>();
@@ -33,80 +33,69 @@ public class Main {
             tags.add(twotags);
 
             String nextLine;
-            while((nextLine = reader.readLine()) != null){
+            while ((nextLine = reader.readLine()) != null) {
                 lines.add(nextLine);
             }
-	    }catch(IOException e){
-	        e.printStackTrace();
-	        return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
         }
 
-	    checkLines();
-	    // write your code here
+        checkLines();
+        // write your code here
     }
-    private static void checkLines(){
-        for(int i = 0; i < lines.size(); i++){
-            System.out.println("--> "+lines.get(i));
+
+    private static void checkLines() {
+        for (int i = 0; i < lines.size(); i++) {
+            System.out.println("--> " + lines.get(i));
             toParse.add(lines.get(i).split(" ", -1));
-            String findings = "<-- ";
+            String arguments = "";
             int level = -1;
             boolean valid = true;
-            for(int j = 0; j < toParse.get(toParse.size() - 1).length; j++){
-                String word = toParse.get(toParse.size() - 1)[j];
-                switch(j) {
-                    case 0:
-                        //level
-                        int prelevel;
-                        try{
-                            prelevel = Integer.parseInt(word);
-                        }catch(NumberFormatException nfe){
-                            prelevel = -1;
-                        }
-                        if (prelevel < 0 || prelevel > 2) {
-                            valid = false;
-                            level = -1;
-                        }else{
-                            level = prelevel;
-                        }
-                        findings += word + "|";
-                        break;
-                    case 1:
-                        //tag or id for indi/fam
-                        if(valid){
-                            boolean inTags = false;
-                            for(String s : tags.get(level)){
-                                if(s.equals(word)){
-                                    if(s.equals("INDI") || s.equals("FAM")){
-                                        valid = false;
-                                    }
-                                    inTags = true;
-                                    break;
-                                }
-                            }
-                            if(!inTags){
-                                if(level == 0){
-                                    if(j + 1 < toParse.get(toParse.size() - 1).length) {
-                                        String nextTag = toParse.get(toParse.size() - 1)[j + 1];
-                                        if(!(nextTag.equals("INDI") || nextTag.equals("FAM"))){
-                                            valid = false;
-                                        }
-                                    }else{
-                                        valid = false;
-                                    }
-                                }else{
-                                    valid = false;
-                                }
-                            }
-                        }
-                        findings += word + "|" + (valid ? "Y" : "N") + "|";
-                        break;
-                    default:
-                        findings += word + " ";
-                        break;
-                }
+            String prelevel = toParse.get(toParse.size() - 1)[0];
 
+            try {
+                level = Integer.parseInt(prelevel);
+                if (level < 0 || level > 2) {
+                    valid = false;
+                }
+            } catch (NumberFormatException nfe) {
+                level = -1;
+                valid = false;
             }
-            System.out.println(findings);
+
+            String tag = toParse.get(toParse.size() - 1)[1];
+            int argStart = 2;
+
+            if(tag.equals("INDI") || tag.equals("FAM")){
+                valid = false;
+            }
+
+            if (toParse.get(toParse.size() - 1).length > 2) {
+                if (toParse.get(toParse.size() - 1)[2].equals("INDI") || toParse.get(toParse.size() - 1)[2].equals("FAM")) {
+                    tag = toParse.get(toParse.size() - 1)[2];
+                    arguments = toParse.get(toParse.size() - 1)[1] + " ";
+                    argStart = 3;
+                    if (toParse.get(toParse.size() - 1).length > 3) {
+                        valid = false;
+                    }
+                }
+                for (int j = argStart; j < toParse.get(toParse.size() - 1).length; j++) {
+                    arguments += toParse.get(toParse.size() - 1)[j] + " ";
+                }
+            }
+
+            if (valid) {
+                boolean inTags = false;
+                for (String s : tags.get(level)) {
+                    if (s.equals(tag))
+                        inTags = true;
+                }
+                if (!inTags)
+                    valid = false;
+            }
+
+            System.out.println("<-- " + level + "|" + tag + "|" + (valid ? "Y" : "N") + "|" + arguments);
         }
     }
 }
