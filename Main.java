@@ -1,3 +1,6 @@
+//I pledge my honor that I have abided by the Stevens Honor System
+//Jose Joaquin Talon
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
