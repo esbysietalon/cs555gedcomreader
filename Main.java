@@ -36,7 +36,7 @@ public class Main {
     private static String[] twotags = {"DATE"};
     private static ArrayList<String[]> validtags;
     private static ArrayList<Tag> parsedTags;
-
+    private static ArrayList<Individual> individuals;
 
     public static void main(String[] args) {
 
@@ -52,6 +52,7 @@ public class Main {
             toParse = new ArrayList<>();
             validtags = new ArrayList<>();
             parsedTags = new ArrayList<>();
+            individuals = new ArrayList<>();
             validtags.add(zerotags);
             validtags.add(onetags);
             validtags.add(twotags);
@@ -73,7 +74,43 @@ public class Main {
         //Test to see if my constructors work right
         //storeIndividuals();
         //storeFamilies();
+        addOrUpdatePeople();
 
+        for(Individual i : individuals){
+            System.out.println(i);
+        }
+    }
+
+    private static void addOrUpdatePeople(){
+        for(Tag t : parsedTags){
+            if(t.tag.equals("INDI")){
+                Individual indi = new Individual();
+                indi.setId(t.arguments[0]);
+                for(Tag c : t.children){
+                    switch(c.tag){
+                        case "NAME":
+                           indi.setName(String.join(" ", c.arguments));
+                            break;
+                        case "SEX":
+                            indi.setSex(c.arguments[0]);
+                            break;
+                        case "DEAT":
+                            indi.setDeathDate(String.join(" ", c.children.get(0).arguments));
+                            break;
+                        case "BIRT":
+                            indi.setBirthDate(String.join(" ", c.children.get(0).arguments));
+                            break;
+                        case "FAMC":
+                            indi.setChildIn(c.arguments[0]);
+                            break;
+                        case "FAMS":
+                            indi.setSpouseIn(c.arguments[0]);
+                            break;
+                    }
+                }
+                individuals.add(indi);
+            }
+        }
     }
 
     private static void checkLines(boolean withPrinting) {

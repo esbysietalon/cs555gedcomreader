@@ -5,13 +5,68 @@
  * @author Nick Marzullo
  */
 public class Individual {
-    public String id;
-    public String name;
-    public String sex;
-    public String birthDate;
-    public String deathDate;
-    public String childIn; //FAMC
-    public String spouseIn; //FAMS
+    private String id;
+    private String name;
+    private String sex;
+    private String birthDate;
+    private String deathDate;
+    private String childIn; //FAMC
+    private String spouseIn; //FAMS
+
+    public Individual(){
+        id = "";
+        name = "";
+        sex = "";
+        birthDate = "";
+        deathDate = "";
+        childIn = "";
+        spouseIn = "";
+    }
+
+    public String getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getSex(){
+        return sex;
+    }
+    public String getBirthDate(){
+        return birthDate;
+    }
+    public String getDeathDate(){
+        return deathDate;
+    }
+    public String getChildIn(){
+        return childIn;
+    }
+    public String getSpouseIn(){
+        return spouseIn;
+    }
+
+    public void setId(String str){
+        id = str;
+    }
+    public void setName(String str){
+        name = str;
+    }
+    public void setSex(String str){
+        sex = str;
+    }
+    public void setBirthDate(String str){
+        birthDate = str;
+    }
+    public void setDeathDate(String str){
+        deathDate = str;
+    }
+    public void setChildIn(String str){
+        childIn = str;
+    }
+    public void setSpouseIn(String str){
+        spouseIn = str;
+    }
+
 
     public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
       id = newId;
