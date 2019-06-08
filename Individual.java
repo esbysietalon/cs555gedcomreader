@@ -12,4 +12,14 @@ public class Individual {
     public String deathDate;
     public String childIn;
     public String spouseIn;
+
+    public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
+      id = newId;
+      name = newName;
+      sex = newSex;
+      birthDate = newBirthDate;
+      deathDate = newDeathDate;
+      childIn = newChildIn;
+      spouseIn = newSpouseIn;
+    }
 }

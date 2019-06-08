@@ -43,6 +43,11 @@ public class Main {
 
         checkLines();
         // write your code here
+
+        //Test to see if my constructors work right
+        storeIndividuals();
+        storeFamilies();
+
     }
 
     private static void checkLines() {
@@ -97,5 +102,19 @@ public class Main {
 
             System.out.println("<-- " + level + "|" + tag + "|" + (valid ? "Y" : "N") + "|" + arguments);
         }
+    }
+
+    private static void storeIndividuals(){
+      //Test to see if my constructors work right
+      Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
+      System.out.println(testIndi.id);
+    }
+
+    private static void storeFamilies(){
+      //Test to see if my constructors work right
+      ArrayList<String> childs = new ArrayList<>();
+      childs.add("test");
+      Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", childs);
+      System.out.println(testFam.id);
     }
 }
