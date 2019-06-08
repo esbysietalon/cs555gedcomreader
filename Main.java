@@ -41,7 +41,7 @@ public class Main {
             return;
         }
 
-        checkLines();
+        checkLines(false);
         // write your code here
 
         //Test to see if my constructors work right
@@ -50,9 +50,10 @@ public class Main {
 
     }
 
-    private static void checkLines() {
+    private static void checkLines(boolean withPrinting) {
         for (int i = 0; i < lines.size(); i++) {
-            System.out.println("--> " + lines.get(i));
+            if(withPrinting)
+               System.out.println("--> " + lines.get(i));
             toParse.add(lines.get(i).split(" ", -1));
             String arguments = "";
             int level = -1;
@@ -100,7 +101,8 @@ public class Main {
                     valid = false;
             }
 
-            System.out.println("<-- " + level + "|" + tag + "|" + (valid ? "Y" : "N") + "|" + arguments);
+            if(withPrinting)
+                System.out.println("<-- " + level + "|" + tag + "|" + (valid ? "Y" : "N") + "|" + arguments);
         }
     }
 

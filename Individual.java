@@ -10,8 +10,8 @@ public class Individual {
     public String sex;
     public String birthDate;
     public String deathDate;
-    public String childIn;
-    public String spouseIn;
+    public String childIn; //FAMC
+    public String spouseIn; //FAMS
 
     public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
       id = newId;
