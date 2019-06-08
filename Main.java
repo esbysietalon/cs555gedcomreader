@@ -6,6 +6,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+class Tag{
+    String tag;
+    String[] arguments;
+    ArrayList<Tag> children;
+    public Tag(){
+        children = new ArrayList<Tag>();
+    }
+    public String toString(){
+        String output = tag + " ";
+        for(int i = 0; i < arguments.length; i++){
+            output += arguments[i] + " ";
+        }
+        output += '\n';
+        for(int i = 0; i < children.size(); i++){
+            output += '\t' + children.get(i).toString() + '\n';
+        }
+        //output += '\n';
+        return output;
+    }
+}
+
 public class Main {
     private static BufferedReader reader;
     private static ArrayList<String> lines;
@@ -13,7 +34,9 @@ public class Main {
     private static String[] zerotags = {"HEAD", "TRLR", "INDI", "FAM", "NOTE"};
     private static String[] onetags = {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"};
     private static String[] twotags = {"DATE"};
-    private static ArrayList<String[]> tags;
+    private static ArrayList<String[]> validtags;
+    private static ArrayList<Tag> parsedTags;
+
 
     public static void main(String[] args) {
 
@@ -27,10 +50,11 @@ public class Main {
             reader = new BufferedReader(new FileReader(args[0]));
             lines = new ArrayList<>();
             toParse = new ArrayList<>();
-            tags = new ArrayList<>();
-            tags.add(zerotags);
-            tags.add(onetags);
-            tags.add(twotags);
+            validtags = new ArrayList<>();
+            parsedTags = new ArrayList<>();
+            validtags.add(zerotags);
+            validtags.add(onetags);
+            validtags.add(twotags);
 
             String nextLine;
             while ((nextLine = reader.readLine()) != null) {
@@ -43,14 +67,21 @@ public class Main {
 
         checkLines(false);
         // write your code here
-
+        for(Tag t : parsedTags){
+            System.out.println(t);
+        }
         //Test to see if my constructors work right
-        storeIndividuals();
-        storeFamilies();
+        //storeIndividuals();
+        //storeFamilies();
 
     }
 
     private static void checkLines(boolean withPrinting) {
+        Tag[] lastTag = new Tag[3];
+        for(int i = 0; i < 3; i++){
+            lastTag[i] = null;
+        }
+
         for (int i = 0; i < lines.size(); i++) {
             if(withPrinting)
                System.out.println("--> " + lines.get(i));
@@ -93,7 +124,7 @@ public class Main {
 
             if (valid) {
                 boolean inTags = false;
-                for (String s : tags.get(level)) {
+                for (String s : validtags.get(level)) {
                     if (s.equals(tag))
                         inTags = true;
                 }
@@ -103,6 +134,19 @@ public class Main {
 
             if(withPrinting)
                 System.out.println("<-- " + level + "|" + tag + "|" + (valid ? "Y" : "N") + "|" + arguments);
+
+            if(valid){
+                Tag newtag = new Tag();
+                newtag.tag = tag;
+                newtag.arguments = arguments.split(" ", -1);
+                if(level > 0){
+                    if(lastTag[level-1] != null){
+                        lastTag[level-1].children.add(newtag);
+                    }
+                }
+                lastTag[level] = newtag;
+                parsedTags.add(newtag);
+            }
         }
     }
 
@@ -114,9 +158,9 @@ public class Main {
 
     private static void storeFamilies(){
       //Test to see if my constructors work right
-      ArrayList<String> childs = new ArrayList<>();
-      childs.add("test");
-      Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", childs);
+      ArrayList<String> children = new ArrayList<>();
+      children.add("test");
+      Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", children);
       System.out.println(testFam);
     }
 }
