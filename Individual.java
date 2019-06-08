@@ -17,10 +17,10 @@ public class Individual {
         id = "";
         name = "";
         sex = "";
-        birthDate = "";
-        deathDate = "";
-        childIn = "";
-        spouseIn = "";
+        birthDate = "N/A";
+        deathDate = "N/A";
+        childIn = "N/A";
+        spouseIn = "N/A";
     }
 
     public String getId(){

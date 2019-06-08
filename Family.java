@@ -18,7 +18,13 @@ public class Family {
     private ArrayList<String> ChildrenIds = new ArrayList<>();
 
     public Family(){
-
+        id = "";
+        marriageDate = "N/A";
+        divorceDate = "N/A";
+        husbandId = "";
+        husbandName = "";
+        wifeId = "";
+        wifeName = "";
     }
 
     public String getId(){

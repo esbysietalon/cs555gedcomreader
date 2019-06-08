@@ -37,6 +37,7 @@ public class Main {
     private static ArrayList<String[]> validtags;
     private static ArrayList<Tag> parsedTags;
     private static ArrayList<Individual> individuals;
+    private static ArrayList<Family> families;
 
     public static void main(String[] args) {
 
@@ -53,6 +54,8 @@ public class Main {
             validtags = new ArrayList<>();
             parsedTags = new ArrayList<>();
             individuals = new ArrayList<>();
+            families = new ArrayList<>();
+
             validtags.add(zerotags);
             validtags.add(onetags);
             validtags.add(twotags);
@@ -74,14 +77,17 @@ public class Main {
         //Test to see if my constructors work right
         //storeIndividuals();
         //storeFamilies();
-        addOrUpdatePeople();
+        addPeople();
 
         for(Individual i : individuals){
             System.out.println(i);
         }
+        for(Family f : families){
+            System.out.println(f);
+        }
     }
 
-    private static void addOrUpdatePeople(){
+    private static void addPeople(){
         for(Tag t : parsedTags){
             if(t.tag.equals("INDI")){
                 Individual indi = new Individual();
@@ -110,6 +116,56 @@ public class Main {
                 }
                 individuals.add(indi);
             }
+            if(t.tag.equals("FAM")){
+                Family fam = new Family();
+                fam.setId(t.arguments[0]);
+                for(Tag c : t.children){
+                    switch(c.tag){
+                        /*
+                        * private String marriageDate;
+                          private String divorceDate;
+                          private String husbandId;
+                          private String husbandName;
+                          private String wifeId;
+                          private String wifeName;
+                          private ArrayList<String> ChildrenIds = new ArrayList<>();
+                        * */
+                        case "MARR":
+                            if(c.children.size() > 0)
+                                fam.setMarriageDate(String.join(" ", c.children.get(0).arguments));
+                            else
+                                fam.setMarriageDate("N/A");
+                            break;
+                        case "DIV":
+                            if(c.children.size() > 0)
+                                fam.setDivorceDate(String.join(" ", c.children.get(0).arguments));
+                            else
+                                fam.setDivorceDate("N/A");
+                            break;
+                        case "HUSB":
+                            fam.setHusbandId(String.join(" ", c.arguments));
+                            for(Tag cc : c.children){
+                                if(cc.tag.equals("NAME")){
+                                    fam.setHusbandName(String.join(" ", cc.arguments));
+                                }
+                            }
+                            break;
+                        case "WIFE":
+                            fam.setWifeId(String.join(" ", c.arguments));
+                            for(Tag cc : c.children){
+                                if(cc.tag.equals("NAME")){
+                                    fam.setWifeName(String.join(" ", cc.arguments));
+                                }
+                            }
+                            break;
+                        case "CHIL":
+                            fam.getChildrenIds().add(String.join(" ", c.arguments));
+                            break;
+                    }
+                }
+                families.add(fam);
+            }
+
         }
     }
 
