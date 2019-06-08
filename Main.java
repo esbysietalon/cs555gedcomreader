@@ -4,7 +4,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 class Tag{
     String tag;
@@ -24,6 +24,12 @@ class Tag{
         }
         //output += '\n';
         return output;
+    }
+}
+
+class SortById implements Comparator<GedcomObject>{
+    public int compare(GedcomObject a, GedcomObject b){
+        return a.getId().compareTo(b.getId());
     }
 }
 
@@ -71,19 +77,57 @@ public class Main {
 
         checkLines(false);
         // write your code here
-        for(Tag t : parsedTags){
-            System.out.println(t);
-        }
         //Test to see if my constructors work right
         //storeIndividuals();
         //storeFamilies();
         addPeople();
 
-        for(Individual i : individuals){
-            System.out.println(i);
+        Collections.sort(individuals, new SortById());
+        Collections.sort(families, new SortById());
+
+        printPeople();
+    }
+
+    private static String convertDateYMD(String date){
+        String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"}
+        String[] args = date.split(" ", -1);
+        String[] out = new String[3];
+
+        int month = -1;
+        for(int i = 0; i < months.length; i++){
+            if(args[1].equals(months[i])){
+                month = i+1;
+                break;
+            }
         }
-        for(Family f : families){
-            System.out.println(f);
+
+        if(month < 10){
+            args[1] = "0" + month;
+        }
+
+        if(args[0].length() < 2){
+            args[0] = "0" + args[0];
+        }
+
+
+        for(int i = 0; i < args.length; i++){
+            out[i] = args[args.length - 1 - i];
+        }
+        return String.join("-", out);
+    }
+
+    private static void printPeople(){
+        System.out.println("Individuals");
+        ArrayList<String>[] columns = new ArrayList<>[9];
+        for(int i = 0; i < columns.length; i++){
+            columns[i] = new ArrayList<>();
+        }
+        for(Individual i : individuals){
+            columns[0].add(i.getId());
+            columns[1].add(i.getName());
+            columns[2].add(i.getSex());
+            columns[3].add(i.getBirthDate());
+
         }
     }
 
