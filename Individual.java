@@ -4,8 +4,7 @@
  * This class stores the data for an individual person
  * @author Nick Marzullo
  */
-public class Individual {
-    private String id;
+public class Individual extends GedcomObject{
     private String name;
     private String sex;
     private String birthDate;
@@ -14,7 +13,7 @@ public class Individual {
     private String spouseIn; //FAMS
 
     public Individual(){
-        id = "";
+        super();
         name = "";
         sex = "";
         birthDate = "N/A";
@@ -23,9 +22,6 @@ public class Individual {
         spouseIn = "N/A";
     }
 
-    public String getId(){
-        return id;
-    }
     public String getName(){
         return name;
     }
@@ -45,9 +41,14 @@ public class Individual {
         return spouseIn;
     }
 
-    public void setId(String str){
-        id = str;
+    public int getAge(){
+        String[] date = birthDate.split(" ", -1);
+        
     }
+    public boolean getAlive(){
+
+    }
+
     public void setName(String str){
         name = str;
     }
@@ -69,7 +70,7 @@ public class Individual {
 
 
     public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
-      id = newId;
+      super(newId);
       name = newName;
       sex = newSex;
       birthDate = newBirthDate;
@@ -80,6 +81,6 @@ public class Individual {
     
     @Override
     public String toString(){
-        return id + " " + name + " " + sex + " " + birthDate + " " + deathDate + " " + childIn + " " + spouseIn;
+        return getId() + " " + name + " " + sex + " " + birthDate + " " + deathDate + " " + childIn + " " + spouseIn;
     }
 }

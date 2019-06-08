@@ -127,7 +127,8 @@ public class Main {
             columns[1].add(i.getName());
             columns[2].add(i.getSex());
             columns[3].add(i.getBirthDate());
-
+            columns[4].add(i.getAge());
+            columns[5].add(i.getAlive());
         }
     }
 

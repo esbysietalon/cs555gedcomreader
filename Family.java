@@ -7,8 +7,7 @@ import java.util.*;
  * This this class stores the data for an individual family
  * @author Nick Marzullo
  */
-public class Family {
-    private String id;
+public class Family extends GedcomObject{
     private String marriageDate;
     private String divorceDate;
     private String husbandId;
@@ -18,7 +17,7 @@ public class Family {
     private ArrayList<String> ChildrenIds = new ArrayList<>();
 
     public Family(){
-        id = "";
+        super();
         marriageDate = "N/A";
         divorceDate = "N/A";
         husbandId = "";
@@ -27,9 +26,6 @@ public class Family {
         wifeName = "";
     }
 
-    public String getId(){
-        return id;
-    }
     public String getMarriageDate(){
         return marriageDate;
     }
@@ -71,9 +67,6 @@ public class Family {
         this.husbandName = husbandName;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public void setMarriageDate(String marriageDate) {
         this.marriageDate = marriageDate;
@@ -88,18 +81,18 @@ public class Family {
     }
 
     public Family(String newId, String newMarriageDate, String newDivorceDate, String newHusbandId, String newHusbandName, String newWifeId, String newWifeName, ArrayList<String> newChildrenIds){
-      id = newId;
-      marriageDate = newMarriageDate;
-      divorceDate = newDivorceDate;
-      husbandId = newHusbandId;
-      husbandName = newHusbandName;
-      wifeId = newWifeId;
-      wifeName = newWifeName;
-      ChildrenIds = newChildrenIds;
+        super(newId);
+        marriageDate = newMarriageDate;
+        divorceDate = newDivorceDate;
+        husbandId = newHusbandId;
+        husbandName = newHusbandName;
+        wifeId = newWifeId;
+        wifeName = newWifeName;
+        ChildrenIds = newChildrenIds;
     }
 
     @Override
     public String toString() {
-        return id + " " + marriageDate + " " + divorceDate + " " + husbandId + " " + husbandName + " " + wifeId + " " + wifeName + " " + ChildrenIds.toString() ;
+        return getId() + " " + marriageDate + " " + divorceDate + " " + husbandId + " " + husbandName + " " + wifeId + " " + wifeName + " " + ChildrenIds.toString() ;
     }
 }
