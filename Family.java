@@ -1,7 +1,10 @@
 //JMJ
+
+
 import java.util.*;
+
 /**
- *
+ * This this class stores the data for an individual family
  * @author Nick Marzullo
  */
 public class Family {
@@ -25,4 +28,8 @@ public class Family {
       ChildrenIds = newChildrenIds;
     }
 
+    @Override
+    public String toString() {
+        return id + " " + marriageDate + " " + divorceDate + " " + husbandId + " " + husbandName + " " + wifeId + " " + wifeName + " " + ChildrenIds.toString() ;
+    }
 }

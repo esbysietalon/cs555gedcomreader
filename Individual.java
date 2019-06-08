@@ -1,7 +1,7 @@
 //JMJ
 
 /**
- *
+ * This class stores the data for an individual person
  * @author Nick Marzullo
  */
 public class Individual {
@@ -21,5 +21,10 @@ public class Individual {
       deathDate = newDeathDate;
       childIn = newChildIn;
       spouseIn = newSpouseIn;
+    }
+    
+    @Override
+    public String toString(){
+        return id + " " + name + " " + sex + " " + birthDate + " " + deathDate + " " + childIn + " " + spouseIn;
     }
 }

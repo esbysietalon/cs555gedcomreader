@@ -19,7 +19,7 @@ public class Main {
 
 
         if (args.length < 1) {
-            System.out.println("Error: please specify a file name/path.");
+            System.err.println("Error: please specify a file name/path.");
             return;
         }
 
@@ -107,7 +107,7 @@ public class Main {
     private static void storeIndividuals(){
       //Test to see if my constructors work right
       Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
-      System.out.println(testIndi.id);
+      System.out.println(testIndi);
     }
 
     private static void storeFamilies(){
@@ -115,6 +115,6 @@ public class Main {
       ArrayList<String> childs = new ArrayList<>();
       childs.add("test");
       Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", childs);
-      System.out.println(testFam.id);
+      System.out.println(testFam);
     }
 }
