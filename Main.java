@@ -166,13 +166,38 @@ public class Main {
             if(convertDateYMD(i.getDeathDate()).length() > longestEntry[6]){
                 longestEntry[6] = convertDateYMD(i.getDeathDate()).length();
             }
-            columns.get(7).add(i.getChildIn());
-            if(i.getChildIn().length() > longestEntry[7]){
-                longestEntry[7] = i.getChildIn().length();
+
+
+            String childrenstr = "{";
+            for(int j = 0; j < i.getChildIn().size(); j++){
+                if(j > 0){
+                    childrenstr += ", ";
+                }
+                childrenstr += i.getChildIn().get(j);
             }
-            columns.get(8).add(i.getSpouseIn());
-            if(i.getSpouseIn().length() > longestEntry[8]){
-                longestEntry[8] = i.getSpouseIn().length();
+            childrenstr += "}";
+            if(i.getChildIn().size() == 0){
+                childrenstr = "NA";
+            }
+            columns.get(7).add(childrenstr);
+            if(childrenstr.length() > longestEntry[7]){
+                longestEntry[7] = childrenstr.length();
+            }
+
+            childrenstr = "{";
+            for(int j = 0; j < i.getSpouseIn().size(); j++){
+                if(j > 0){
+                    childrenstr += ", ";
+                }
+                childrenstr += i.getSpouseIn().get(j);
+            }
+            childrenstr += "}";
+            if(i.getSpouseIn().size() == 0){
+                childrenstr = "NA";
+            }
+            columns.get(8).add(childrenstr);
+            if(childrenstr.length() > longestEntry[7]){
+                longestEntry[8] = childrenstr.length();
             }
         }
 
@@ -331,10 +356,12 @@ public class Main {
                             indi.setBirthDate(String.join(" ", c.children.get(0).arguments));
                             break;
                         case "FAMC":
-                            indi.setChildIn(c.arguments[0]);
+                            indi.getChildIn().add(c.arguments[0]);
+                            //indi.setChildIn(c.arguments[0]);
                             break;
                         case "FAMS":
-                            indi.setSpouseIn(c.arguments[0]);
+                            indi.getSpouseIn().add(c.arguments[0]);
+                            //indi.setSpouseIn(c.arguments[0]);
                             break;
                     }
                 }
@@ -469,7 +496,7 @@ public class Main {
         }
     }
 
-    private static void storeIndividuals(){
+    /*private static void storeIndividuals(){
       //Test to see if my constructors work right
       Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
       System.out.println(testIndi);
@@ -481,5 +508,5 @@ public class Main {
       children.add("test");
       Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", children);
       System.out.println(testFam);
-    }
+    }*/
 }

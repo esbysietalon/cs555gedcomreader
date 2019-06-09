@@ -7,14 +7,15 @@
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Individual extends GedcomObject{
     private String name;
     private String sex;
     private String birthDate;
     private String deathDate;
-    private String childIn; //FAMC
-    private String spouseIn; //FAMS
+    private ArrayList<String> childIn; //FAMC
+    private ArrayList<String> spouseIn; //FAMS
 
     public Individual(){
         super();
@@ -22,8 +23,8 @@ public class Individual extends GedcomObject{
         sex = "";
         birthDate = "NA";
         deathDate = "NA";
-        childIn = "NA";
-        spouseIn = "NA";
+        childIn = new ArrayList<String>();
+        spouseIn = new ArrayList<String>();
     }
 
     public String getName(){
@@ -38,10 +39,10 @@ public class Individual extends GedcomObject{
     public String getDeathDate(){
         return deathDate;
     }
-    public String getChildIn(){
+    public ArrayList<String> getChildIn(){
         return childIn;
     }
-    public String getSpouseIn(){
+    public ArrayList<String> getSpouseIn(){
         return spouseIn;
     }
 
@@ -98,15 +99,15 @@ public class Individual extends GedcomObject{
     public void setDeathDate(String str){
         deathDate = str.trim();
     }
-    public void setChildIn(String str){
-        childIn = str.trim();
+    public void setChildIn(ArrayList<String> arr){
+        childIn = arr;
     }
-    public void setSpouseIn(String str){
-        spouseIn = str.trim();
+    public void setSpouseIn(ArrayList<String> arr){
+        spouseIn = arr;
     }
 
 
-    public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
+    public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, ArrayList<String> newChildIn, ArrayList<String> newSpouseIn){
       super(newId);
       name = newName;
       sex = newSex;
