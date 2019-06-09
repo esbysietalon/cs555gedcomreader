@@ -4,6 +4,10 @@
  * This class stores the data for an individual person
  * @author Nick Marzullo
  */
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Individual extends GedcomObject{
     private String name;
     private String sex;
@@ -16,10 +20,10 @@ public class Individual extends GedcomObject{
         super();
         name = "";
         sex = "";
-        birthDate = "N/A";
-        deathDate = "N/A";
-        childIn = "N/A";
-        spouseIn = "N/A";
+        birthDate = "NA";
+        deathDate = "NA";
+        childIn = "NA";
+        spouseIn = "NA";
     }
 
     public String getName(){
@@ -42,11 +46,44 @@ public class Individual extends GedcomObject{
     }
 
     public int getAge(){
-        String[] date = birthDate.split(" ", -1);
-        
+
+        String newDate = Main.convertDateYMD(birthDate);
+        String[] thendate = newDate.split("-", -1);
+        int thenyear = Integer.parseInt(thendate[0]);
+        int thenmonth = Integer.parseInt(thendate[1]);
+        int thenday = Integer.parseInt(thendate[2]);
+
+        int nowyear;
+        int nowmonth;
+        int nowday;
+        if(getAlive()) {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
+            Date date = new Date();
+            String today = dateFormat.format(date);
+            String[] nowdate = today.split(" ", -1);
+            nowyear = Integer.parseInt(nowdate[0]);
+            nowmonth = Integer.parseInt(nowdate[1]);
+            nowday = Integer.parseInt(nowdate[2]);
+        }else{
+            String preDate = Main.convertDateYMD(deathDate);
+            String[] nowdate = preDate.split("-", -1);
+            nowyear = Integer.parseInt(nowdate[0]);
+            nowmonth = Integer.parseInt(nowdate[1]);
+            nowday = Integer.parseInt(nowdate[2]);
+        }
+        int age = nowyear - thenyear;
+        if(thenmonth > nowmonth){
+            age--;
+        }else{
+            if(thenday > nowday){
+                age--;
+            }
+        }
+
+        return age;
     }
     public boolean getAlive(){
-
+        return (deathDate.equals("NA"));
     }
 
     public void setName(String str){
@@ -56,10 +93,10 @@ public class Individual extends GedcomObject{
         sex = str;
     }
     public void setBirthDate(String str){
-        birthDate = str;
+        birthDate = str.trim();
     }
     public void setDeathDate(String str){
-        deathDate = str;
+        deathDate = str.trim();
     }
     public void setChildIn(String str){
         childIn = str;

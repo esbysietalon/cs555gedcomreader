@@ -88,13 +88,22 @@ public class Main {
         printPeople();
     }
 
-    private static String convertDateYMD(String date){
-        String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"}
+    public static String convertDateYMD(String date){
+        //System.out.println("::"+date+"::");
+        String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
+        if(args.length < 3){
+            return date;
+        }
+        /*for(int i = 0; i < args.length; i++){
+            args[i] = args[i].trim();
+            System.out.println("::" + args[i] + "::");
+        }*/
         String[] out = new String[3];
 
         int month = -1;
         for(int i = 0; i < months.length; i++){
+            //System.out.println(args[1] + "---" + months[i]);
             if(args[1].equals(months[i])){
                 month = i+1;
                 break;
@@ -103,6 +112,8 @@ public class Main {
 
         if(month < 10){
             args[1] = "0" + month;
+        }else{
+            args[1] = new Integer(month).toString();
         }
 
         if(args[0].length() < 2){
@@ -118,17 +129,79 @@ public class Main {
 
     private static void printPeople(){
         System.out.println("Individuals");
-        ArrayList<String>[] columns = new ArrayList<>[9];
-        for(int i = 0; i < columns.length; i++){
-            columns[i] = new ArrayList<>();
+        String[] headers = {"ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"};
+        ArrayList<ArrayList<String>> columns = new ArrayList<>();
+        int[] longestEntry = new int[headers.length];
+        for(int i = 0; i < headers.length; i++){
+            columns.add(new ArrayList<String>());
+            longestEntry[i] = -1;
         }
         for(Individual i : individuals){
-            columns[0].add(i.getId());
-            columns[1].add(i.getName());
-            columns[2].add(i.getSex());
-            columns[3].add(i.getBirthDate());
-            columns[4].add(i.getAge());
-            columns[5].add(i.getAlive());
+            columns.get(0).add(i.getId());
+            if(i.getId().length() > longestEntry[0]){
+                longestEntry[0] = i.getId().length();
+            }
+            columns.get(1).add(i.getName());
+            if(i.getName().length() > longestEntry[1]){
+                longestEntry[1] = i.getName().length();
+            }
+            columns.get(2).add(i.getSex());
+            if(i.getSex().length() > longestEntry[2]){
+                longestEntry[2] = i.getSex().length();
+            }
+            columns.get(3).add(convertDateYMD(i.getBirthDate()));
+            if(convertDateYMD(i.getBirthDate()).length() > longestEntry[3]){
+                longestEntry[3] = convertDateYMD(i.getBirthDate()).length();
+            }
+            columns.get(4).add(new Integer(i.getAge()).toString());
+            if(new Integer(i.getAge()).toString().length() > longestEntry[4]){
+                longestEntry[4] = new Integer(i.getAge()).toString().length();
+            }
+            columns.get(5).add((i.getAlive() ? "True" : "False"));
+            if((i.getAlive() ? "True" : "False").length() > longestEntry[5]){
+                longestEntry[5] = (i.getAlive() ? "True" : "False").length();
+            }
+            columns.get(6).add(convertDateYMD(i.getDeathDate()));
+            if(convertDateYMD(i.getDeathDate()).length() > longestEntry[6]){
+                longestEntry[6] = convertDateYMD(i.getDeathDate()).length();
+            }
+            columns.get(7).add(i.getChildIn());
+            if(i.getChildIn().length() > longestEntry[7]){
+                longestEntry[7] = i.getChildIn().length();
+            }
+            columns.get(8).add(i.getSpouseIn());
+            if(i.getSpouseIn().length() > longestEntry[8]){
+                longestEntry[8] = i.getSpouseIn().length();
+            }
+        }
+
+        for(int i = 0; i < longestEntry.length; i++){
+            longestEntry[i] += 4;
+        }
+
+        for(int i = 0; i < headers.length; i++){
+            String padded = headers[i];
+            while(padded.length() < longestEntry[i]){
+                padded = " " + padded;
+                if(padded.length() == longestEntry[i])
+                    break;
+                padded += " ";
+            }
+            System.out.print(padded);
+        }
+        System.out.println();
+        for(int j = 0; j < individuals.size(); j++) {
+            for (int i = 0; i < headers.length; i++) {
+                String padded = columns.get(i).get(j);
+                while(padded.length() < longestEntry[i]){
+                    padded = " " + padded;
+                    if(padded.length() == longestEntry[i])
+                        break;
+                    padded += " ";
+                }
+                System.out.print(padded);
+            }
+            System.out.println();
         }
     }
 

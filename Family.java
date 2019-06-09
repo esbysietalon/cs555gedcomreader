@@ -18,8 +18,8 @@ public class Family extends GedcomObject{
 
     public Family(){
         super();
-        marriageDate = "N/A";
-        divorceDate = "N/A";
+        marriageDate = "NA";
+        divorceDate = "NA";
         husbandId = "";
         husbandName = "";
         wifeId = "";
