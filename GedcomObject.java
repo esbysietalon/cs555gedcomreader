@@ -14,6 +14,6 @@ public class GedcomObject{
         return id;
     }
     public void setId(String str){
-        id = str;
+        id = str.trim();
     }
 }

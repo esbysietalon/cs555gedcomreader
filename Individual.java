@@ -87,10 +87,10 @@ public class Individual extends GedcomObject{
     }
 
     public void setName(String str){
-        name = str;
+        name = str.trim();
     }
     public void setSex(String str){
-        sex = str;
+        sex = str.trim();
     }
     public void setBirthDate(String str){
         birthDate = str.trim();
@@ -99,10 +99,10 @@ public class Individual extends GedcomObject{
         deathDate = str.trim();
     }
     public void setChildIn(String str){
-        childIn = str;
+        childIn = str.trim();
     }
     public void setSpouseIn(String str){
-        spouseIn = str;
+        spouseIn = str.trim();
     }
 
 

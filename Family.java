@@ -21,9 +21,9 @@ public class Family extends GedcomObject{
         marriageDate = "NA";
         divorceDate = "NA";
         husbandId = "";
-        husbandName = "";
+        husbandName = "!!!";
         wifeId = "";
-        wifeName = "";
+        wifeName = "!!!";
     }
 
     public String getMarriageDate(){
@@ -56,28 +56,28 @@ public class Family extends GedcomObject{
     }
 
     public void setDivorceDate(String divorceDate) {
-        this.divorceDate = divorceDate;
+        this.divorceDate = divorceDate.trim();
     }
 
     public void setHusbandId(String husbandId) {
-        this.husbandId = husbandId;
+        this.husbandId = husbandId.trim();
     }
 
     public void setHusbandName(String husbandName) {
-        this.husbandName = husbandName;
+        this.husbandName = husbandName.trim();
     }
 
 
     public void setMarriageDate(String marriageDate) {
-        this.marriageDate = marriageDate;
+        this.marriageDate = marriageDate.trim();
     }
 
     public void setWifeId(String wifeId) {
-        this.wifeId = wifeId;
+        this.wifeId = wifeId.trim();
     }
 
     public void setWifeName(String wifeName) {
-        this.wifeName = wifeName;
+        this.wifeName = wifeName.trim();
     }
 
     public Family(String newId, String newMarriageDate, String newDivorceDate, String newHusbandId, String newHusbandName, String newWifeId, String newWifeName, ArrayList<String> newChildrenIds){

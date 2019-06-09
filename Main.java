@@ -92,7 +92,7 @@ public class Main {
         //System.out.println("::"+date+"::");
         String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
-        if(args.length < 3){
+        if(args.length != 3){
             return date;
         }
         /*for(int i = 0; i < args.length; i++){
@@ -122,6 +122,7 @@ public class Main {
 
 
         for(int i = 0; i < args.length; i++){
+            //System.out.println(i);
             out[i] = args[args.length - 1 - i];
         }
         return String.join("-", out);
@@ -203,6 +204,111 @@ public class Main {
             }
             System.out.println();
         }
+
+
+
+
+
+        System.out.println("Families");
+        headers = new String[8];
+        //headers = {"ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"};
+        headers[0] = "ID";
+        headers[1] = "Married";
+        headers[2] = "Divorced";
+        headers[3] = "Husband ID";
+        headers[4] = "Husband Name";
+        headers[5] = "Wife ID";
+        headers[6] = "Wife Name";
+        headers[7] = "Children";
+        columns = new ArrayList<>();
+        longestEntry = new int[headers.length];
+        for(int i = 0; i < headers.length; i++){
+            columns.add(new ArrayList<String>());
+            longestEntry[i] = headers[i].length();
+        }
+        for(Family f : families){
+            columns.get(0).add(f.getId());
+            if(f.getId().length() > longestEntry[0]){
+                longestEntry[0] = f.getId().length();
+            }
+
+            columns.get(1).add(convertDateYMD(f.getMarriageDate()));
+            if(convertDateYMD(f.getMarriageDate()).length() > longestEntry[1]){
+                longestEntry[1] = convertDateYMD(f.getMarriageDate()).length();
+            }
+
+            columns.get(2).add(convertDateYMD(f.getDivorceDate()));
+            if(convertDateYMD(f.getDivorceDate()).length() > longestEntry[2]){
+                longestEntry[2] = convertDateYMD(f.getDivorceDate()).length();
+            }
+
+            columns.get(3).add(f.getHusbandId());
+            if(f.getHusbandId().length() > longestEntry[3]){
+                longestEntry[3] = f.getHusbandId().length();
+            }
+
+            columns.get(4).add(f.getHusbandName());
+            if(f.getHusbandName().length() > longestEntry[4]){
+                longestEntry[4] = f.getHusbandName().length();
+            }
+
+            columns.get(5).add(f.getWifeId());
+            if(f.getWifeId().length() > longestEntry[5]){
+                longestEntry[5] = f.getWifeId().length();
+            }
+
+            columns.get(6).add(f.getWifeName());
+            if(f.getWifeName().length() > longestEntry[6]){
+                longestEntry[6] = f.getWifeName().length();
+            }
+
+            String childrenstr = "{";
+            for(int j = 0; j < f.getChildrenIds().size(); j++){
+                if(j > 0){
+                    childrenstr += ", ";
+                }
+                childrenstr += f.getChildrenIds().get(j);
+            }
+            childrenstr += "}";
+            if(f.getChildrenIds().size() == 0){
+                childrenstr = "NA";
+            }
+            columns.get(7).add(childrenstr);
+            if(childrenstr.length() > longestEntry[7]){
+                longestEntry[7] = childrenstr.length();
+            }
+        }
+
+
+
+        for(int i = 0; i < longestEntry.length; i++){
+            longestEntry[i] += 4;
+        }
+
+        for(int i = 0; i < headers.length; i++){
+            String padded = headers[i];
+            while(padded.length() < longestEntry[i]){
+                padded += " ";
+                if(padded.length() == longestEntry[i])
+                    break;
+                padded = " " + padded;
+            }
+            System.out.print(padded);
+        }
+        System.out.println();
+        for(int j = 0; j < families.size(); j++) {
+            for (int i = 0; i < headers.length; i++) {
+                String padded = columns.get(i).get(j);
+                while(padded.length() < longestEntry[i]){
+                    padded += " ";
+                    if(padded.length() == longestEntry[i])
+                        break;
+                    padded = " " + padded;
+                }
+                System.out.print(padded);
+            }
+            System.out.println();
+        }
     }
 
     private static void addPeople(){
@@ -239,45 +345,47 @@ public class Main {
                 fam.setId(t.arguments[0]);
                 for(Tag c : t.children){
                     switch(c.tag){
-                        /*
-                        * private String marriageDate;
-                          private String divorceDate;
-                          private String husbandId;
-                          private String husbandName;
-                          private String wifeId;
-                          private String wifeName;
-                          private ArrayList<String> ChildrenIds = new ArrayList<>();
-                        * */
+
                         case "MARR":
                             if(c.children.size() > 0)
                                 fam.setMarriageDate(String.join(" ", c.children.get(0).arguments));
                             else
-                                fam.setMarriageDate("N/A");
+                                fam.setMarriageDate("NA");
                             break;
                         case "DIV":
                             if(c.children.size() > 0)
                                 fam.setDivorceDate(String.join(" ", c.children.get(0).arguments));
                             else
-                                fam.setDivorceDate("N/A");
+                                fam.setDivorceDate("NA");
                             break;
                         case "HUSB":
                             fam.setHusbandId(String.join(" ", c.arguments));
-                            for(Tag cc : c.children){
-                                if(cc.tag.equals("NAME")){
-                                    fam.setHusbandName(String.join(" ", cc.arguments));
+                            for(Tag rec : parsedTags){
+                                if(rec.arguments[0].equals(fam.getHusbandId())){
+                                    for(Tag cc : rec.children){
+                                        //System.out.println(cc.tag);
+                                        if(cc.tag.equals("NAME")){
+                                            fam.setHusbandName(String.join(" ", cc.arguments));
+                                        }
+                                    }
                                 }
                             }
                             break;
                         case "WIFE":
                             fam.setWifeId(String.join(" ", c.arguments));
-                            for(Tag cc : c.children){
-                                if(cc.tag.equals("NAME")){
-                                    fam.setWifeName(String.join(" ", cc.arguments));
+                            for(Tag rec : parsedTags){
+                                if(rec.arguments[0].equals(fam.getWifeId())){
+                                    for(Tag cc : rec.children){
+                                        //System.out.println(cc.tag);
+                                        if(cc.tag.equals("NAME")){
+                                            fam.setWifeName(String.join(" ", cc.arguments));
+                                        }
+                                    }
                                 }
                             }
                             break;
                         case "CHIL":
-                            fam.getChildrenIds().add(String.join(" ", c.arguments));
+                            fam.getChildrenIds().add(String.join(" ", c.arguments).trim());
                             break;
                     }
                 }
@@ -348,7 +456,7 @@ public class Main {
 
             if(valid){
                 Tag newtag = new Tag();
-                newtag.tag = tag;
+                newtag.tag = tag.trim();
                 newtag.arguments = arguments.split(" ", -1);
                 if(level > 0){
                     if(lastTag[level-1] != null){
