@@ -172,13 +172,27 @@ public class Main {
             if(convertDateYMD(i.getDeathDate()).length() > longestEntry[6]){
                 longestEntry[6] = convertDateYMD(i.getDeathDate()).length();
             }
-            columns.get(7).add(i.getFAMC());
-            if(i.getFAMC().length() > longestEntry[7]){
-                longestEntry[7] = i.getFAMC().length();
+
+            String childrenstr;
+            if(i.getFAMCs().isEmpty()){
+                childrenstr = "NA";
+            } else {
+                childrenstr = i.getFAMCs().toString();
             }
-            columns.get(8).add(i.getFAMS());
-            if(i.getFAMS().length() > longestEntry[8]){
-                longestEntry[8] = i.getFAMS().length();
+            columns.get(7).add(childrenstr);
+            if(childrenstr.length() > longestEntry[7]){
+                longestEntry[7] = childrenstr.length();
+            }
+
+            String spousestr;
+            if(i.getFAMSs().size() == 0){
+                spousestr = "NA";
+            }else {
+                spousestr = i.getFAMSs().toString();
+            }
+            columns.get(8).add(spousestr);
+            if(spousestr.length() > longestEntry[7]){
+                longestEntry[8] = spousestr.length();
             }
         }
 
@@ -321,10 +335,10 @@ public class Main {
                             indi.setBirthDate(String.join(" ", c.children.get(0).arguments));
                             break;
                         case "FAMC":
-                            indi.setFAMC(c.arguments[0]);
+                            indi.getFAMCs().add(c.arguments[0]);
                             break;
                         case "FAMS":
-                            indi.setFAMS(c.arguments[0]);
+                            indi.getFAMSs().add(c.arguments[0]);
                             break;
                     }
                 }
@@ -459,7 +473,7 @@ public class Main {
         }
     }
 
-    private static void storeIndividuals(){
+    /*private static void storeIndividuals(){
       //Test to see if my constructors work right
       Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
       System.out.println(testIndi);
@@ -471,5 +485,5 @@ public class Main {
       children.add("test");
       Family testFam = new Family("test", "test", "test", "test", "test", "test", "test", children);
       System.out.println(testFam);
-    }
+    }*/
 }

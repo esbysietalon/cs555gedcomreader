@@ -7,14 +7,15 @@
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Individual extends GedcomObject{
     private String name;
     private String sex;
     private String birthDate;
     private String deathDate;
-    private String FAMC;
-    private String FAMS;
+    private ArrayList<String> FAMCs;
+    private ArrayList<String> FAMSs;
 
     /**
      * Empty constructor
@@ -26,8 +27,8 @@ public class Individual extends GedcomObject{
         sex = "";
         birthDate = "NA";
         deathDate = "NA";
-        FAMC = "NA";
-        FAMS = "NA";
+        FAMCs = new ArrayList<>();
+        FAMSs = new ArrayList<>();
     }
 
     /**
@@ -81,33 +82,20 @@ public class Individual extends GedcomObject{
     public void setDeathDate(String deathDate){
         this.deathDate = deathDate.trim();
     }
-
+    
     /**
-     * @return The Id of the Family that contains this Individual as a child
+     * @return The IDs of all Families that contains this Individual as a child
      */
-    public String getFAMC(){
-        return FAMC;
-    }
-    /**
-     * @param FAMC The Id of the Family that contains this Individual as a child 
-     */
-    public void setFAMC(String FAMC){
-        this.FAMC = FAMC.trim();
+    public ArrayList<String> getFAMCs(){
+        return FAMCs;
     }
 
     /**
-     * @return The Id of the Family that contains this Individual as either a Husband or Wife
+     * @return The IDs of all Families that contains this Individual as either a Husband or Wife
      */
-    public String getFAMS(){
-        return FAMS;
+    public ArrayList<String> getFAMSs(){
+        return FAMSs;
     }
-    /**
-     * @param FAMS The Id of the Family that contains this Individual as either a Husband or Wife
-     */
-    public void setFAMS(String FAMS){
-        this.FAMS = FAMS.trim();
-    }
-
 
     /**
      * Calculates the age of the Individual in years. 
@@ -168,25 +156,25 @@ public class Individual extends GedcomObject{
      * @param sex "M" or "F" representing the individual's sex
      * @param birthDate Birth Date read directly from GEDCOM file
      * @param deathDate Death Date read directly from GEDCOM file
-     * @param childIn The Id of the Family that contains this Individual as a child
-     * @param spouseIn The Id of the Family that contains this Individual as either a Husband or Wife
+     * @param FAMCs The IDs of all Families that contains this Individual as a child
+     * @param FAMSs The IDs of all Families that contains this Individual as either a Husband or Wife
      */
-    public Individual(String id, String name, String sex, String birthDate, String deathDate, String childIn, String spouseIn){
+    public Individual(String id, String name, String sex, String birthDate, String deathDate, ArrayList<String> FAMCs, ArrayList<String> FAMSs){
       super(id);
       this.name = name;
       this.sex = sex;
       this.birthDate = birthDate;
       this.deathDate = deathDate;
-      this.FAMC = childIn;
-      this.FAMS = spouseIn;
+      this.FAMCs = FAMCs;
+      this.FAMSs = FAMSs;
     }
     
     /**
      * Returns a string representation of the Individual
-     * @return id, name, sex, birthDate, deathDate, FAMC, and FAMS separated by tabs
+     * @return id, name, sex, birthDate, deathDate, FAMCs, and FAMSs separated by tabs
      */
     @Override
     public String toString(){
-        return super.toString() + "\t" + name + "\t" + sex + "\t" + birthDate + "\t" + deathDate + "\t" + FAMC + "\t" + FAMS;
+        return super.toString() + "\t" + name + "\t" + sex + "\t" + birthDate + "\t" + deathDate + "\t" + FAMCs.toString() + "\t" + FAMSs.toString();
     }
 }
