@@ -134,7 +134,7 @@ public class Main {
         int[] longestEntry = new int[headers.length];
         for(int i = 0; i < headers.length; i++){
             columns.add(new ArrayList<String>());
-            longestEntry[i] = -1;
+            longestEntry[i] = headers[i].length();
         }
         for(Individual i : individuals){
             columns.get(0).add(i.getId());
@@ -182,10 +182,10 @@ public class Main {
         for(int i = 0; i < headers.length; i++){
             String padded = headers[i];
             while(padded.length() < longestEntry[i]){
-                padded = " " + padded;
+                padded += " ";
                 if(padded.length() == longestEntry[i])
                     break;
-                padded += " ";
+                padded = " " + padded;
             }
             System.out.print(padded);
         }
@@ -194,10 +194,10 @@ public class Main {
             for (int i = 0; i < headers.length; i++) {
                 String padded = columns.get(i).get(j);
                 while(padded.length() < longestEntry[i]){
-                    padded = " " + padded;
+                    padded += " ";
                     if(padded.length() == longestEntry[i])
                         break;
-                    padded += " ";
+                    padded = " " + padded;
                 }
                 System.out.print(padded);
             }
