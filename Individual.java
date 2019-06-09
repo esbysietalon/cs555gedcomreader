@@ -13,38 +13,107 @@ public class Individual extends GedcomObject{
     private String sex;
     private String birthDate;
     private String deathDate;
-    private String childIn; //FAMC
-    private String spouseIn; //FAMS
+    private String FAMC;
+    private String FAMS;
 
+    /**
+     * Empty constructor
+     * Use this when you plan on filling in the rest of the data later
+     */
     public Individual(){
         super();
         name = "";
         sex = "";
         birthDate = "NA";
         deathDate = "NA";
-        childIn = "NA";
-        spouseIn = "NA";
+        FAMC = "NA";
+        FAMS = "NA";
     }
 
+    /**
+     * @return Name of individual
+     */
     public String getName(){
         return name;
     }
+    /**
+     * @param name Name of individual
+     */
+    public void setName(String name){
+        this.name = name.trim();
+    }
+    
+    /**
+     * @return "M" or "F" representing the individual's sex
+     */
     public String getSex(){
         return sex;
     }
+    /**
+     * @param sex "M" or "F" representing the individual's sex
+     */
+    public void setSex(String sex){
+        this.sex = sex.trim();
+    }
+
+    /**
+     * @return Birth Date as stored in the GEDCOM file
+     */
     public String getBirthDate(){
         return birthDate;
     }
+    /**
+     * @param birthDate Birth Date read directly from GEDCOM file
+     */
+    public void setBirthDate(String birthDate){
+        this.birthDate = birthDate.trim();
+    }
+
+    /**
+     * @return Date of Death as stored in the GEDCOM file
+     */
     public String getDeathDate(){
         return deathDate;
     }
-    public String getChildIn(){
-        return childIn;
-    }
-    public String getSpouseIn(){
-        return spouseIn;
+    /**
+     * @param deathDate Date of Death read directly from GEDCOM file
+     */
+    public void setDeathDate(String deathDate){
+        this.deathDate = deathDate.trim();
     }
 
+    /**
+     * @return The Id of the Family that contains this Individual as a child
+     */
+    public String getFAMC(){
+        return FAMC;
+    }
+    /**
+     * @param FAMC The Id of the Family that contains this Individual as a child 
+     */
+    public void setFAMC(String FAMC){
+        this.FAMC = FAMC.trim();
+    }
+
+    /**
+     * @return The Id of the Family that contains this Individual as either a Husband or Wife
+     */
+    public String getFAMS(){
+        return FAMS;
+    }
+    /**
+     * @param FAMS The Id of the Family that contains this Individual as either a Husband or Wife
+     */
+    public void setFAMS(String FAMS){
+        this.FAMS = FAMS.trim();
+    }
+
+
+    /**
+     * Calculates the age of the Individual in years. 
+     * If the Individual is deceased, the age is calculated based on date of death, otherwise it is based on the current date
+     * @return age in years 
+     */
     public int getAge(){
 
         String newDate = Main.convertDateYMD(birthDate);
@@ -56,7 +125,7 @@ public class Individual extends GedcomObject{
         int nowyear;
         int nowmonth;
         int nowday;
-        if(getAlive()) {
+        if(isAlive()) {
             DateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
             Date date = new Date();
             String today = dateFormat.format(date);
@@ -82,42 +151,42 @@ public class Individual extends GedcomObject{
 
         return age;
     }
-    public boolean getAlive(){
+
+    /**
+     * Is the Individual alive?
+     * @return true if there is no Death Date
+     */
+    public boolean isAlive(){
         return (deathDate.equals("NA"));
     }
 
-    public void setName(String str){
-        name = str.trim();
-    }
-    public void setSex(String str){
-        sex = str.trim();
-    }
-    public void setBirthDate(String str){
-        birthDate = str.trim();
-    }
-    public void setDeathDate(String str){
-        deathDate = str.trim();
-    }
-    public void setChildIn(String str){
-        childIn = str.trim();
-    }
-    public void setSpouseIn(String str){
-        spouseIn = str.trim();
-    }
-
-
-    public Individual(String newId, String newName, String newSex, String newBirthDate, String newDeathDate, String newChildIn, String newSpouseIn){
-      super(newId);
-      name = newName;
-      sex = newSex;
-      birthDate = newBirthDate;
-      deathDate = newDeathDate;
-      childIn = newChildIn;
-      spouseIn = newSpouseIn;
+    /**
+     * Creates Individual based on input
+     * 
+     * @param id Id read directly from GEDCOM file
+     * @param name Name of individual
+     * @param sex "M" or "F" representing the individual's sex
+     * @param birthDate Birth Date read directly from GEDCOM file
+     * @param deathDate Death Date read directly from GEDCOM file
+     * @param childIn The Id of the Family that contains this Individual as a child
+     * @param spouseIn The Id of the Family that contains this Individual as either a Husband or Wife
+     */
+    public Individual(String id, String name, String sex, String birthDate, String deathDate, String childIn, String spouseIn){
+      super(id);
+      this.name = name;
+      this.sex = sex;
+      this.birthDate = birthDate;
+      this.deathDate = deathDate;
+      this.FAMC = childIn;
+      this.FAMS = spouseIn;
     }
     
+    /**
+     * Returns a string representation of the Individual
+     * @return id, name, sex, birthDate, deathDate, FAMC, and FAMS separated by tabs
+     */
     @Override
     public String toString(){
-        return getId() + " " + name + " " + sex + " " + birthDate + " " + deathDate + " " + childIn + " " + spouseIn;
+        return super.toString() + "\t" + name + "\t" + sex + "\t" + birthDate + "\t" + deathDate + "\t" + FAMC + "\t" + FAMS;
     }
 }

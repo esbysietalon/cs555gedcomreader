@@ -10,9 +10,12 @@ class Tag{
     String tag;
     String[] arguments;
     ArrayList<Tag> children;
+    
     public Tag(){
-        children = new ArrayList<Tag>();
+        children = new ArrayList<>();
     }
+    
+    @Override
     public String toString(){
         String output = tag + " ";
         for(int i = 0; i < arguments.length; i++){
@@ -22,49 +25,53 @@ class Tag{
         for(int i = 0; i < children.size(); i++){
             output += '\t' + children.get(i).toString() + '\n';
         }
-        //output += '\n';
         return output;
     }
 }
 
 class SortById implements Comparator<GedcomObject>{
+    @Override
     public int compare(GedcomObject a, GedcomObject b){
         return a.getId().compareTo(b.getId());
     }
 }
 
+/**
+ * 
+ * The Assignment
+ * 
+ * @author Jose Talon
+ * @author Nick Marzullo
+ * @author Eli Weinberger
+ */
 public class Main {
+    private static final String[][] VALID_TAGS = {{"HEAD", "TRLR", "INDI", "FAM", "NOTE"}, 
+                                                {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"}, 
+                                                {"DATE"}};
+    
     private static BufferedReader reader;
     private static ArrayList<String> lines;
     private static ArrayList<String[]> toParse;
-    private static String[] zerotags = {"HEAD", "TRLR", "INDI", "FAM", "NOTE"};
-    private static String[] onetags = {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"};
-    private static String[] twotags = {"DATE"};
-    private static ArrayList<String[]> validtags;
     private static ArrayList<Tag> parsedTags;
     private static ArrayList<Individual> individuals;
     private static ArrayList<Family> families;
 
     public static void main(String[] args) {
 
-
+        //Check to see if a GEGCOM File was provided
         if (args.length < 1) {
             System.err.println("Error: please specify a file name/path.");
             return;
         }
 
+        //Read data from GEDCOM file
         try {
             reader = new BufferedReader(new FileReader(args[0]));
             lines = new ArrayList<>();
             toParse = new ArrayList<>();
-            validtags = new ArrayList<>();
             parsedTags = new ArrayList<>();
             individuals = new ArrayList<>();
             families = new ArrayList<>();
-
-            validtags.add(zerotags);
-            validtags.add(onetags);
-            validtags.add(twotags);
 
             String nextLine;
             while ((nextLine = reader.readLine()) != null) {
@@ -75,35 +82,35 @@ public class Main {
             return;
         }
 
+        //Filter useless data
         checkLines(false);
-        // write your code here
-        //Test to see if my constructors work right
-        //storeIndividuals();
-        //storeFamilies();
+        //Store useful data from the GEDCOM file
         addPeople();
 
         Collections.sort(individuals, new SortById());
         Collections.sort(families, new SortById());
 
         printPeople();
+        printFamilies();
     }
 
+    /**
+     * Converts dates from format used in GEDCOM files to YYYY-MM-DD
+     * @param date Date as stored in GEDCOM file
+     * @return String containing date in YYYY-MM-DD format
+     */
     public static String convertDateYMD(String date){
-        //System.out.println("::"+date+"::");
         String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
+        
         if(args.length != 3){
             return date;
         }
-        /*for(int i = 0; i < args.length; i++){
-            args[i] = args[i].trim();
-            System.out.println("::" + args[i] + "::");
-        }*/
+        
         String[] out = new String[3];
 
         int month = -1;
         for(int i = 0; i < months.length; i++){
-            //System.out.println(args[1] + "---" + months[i]);
             if(args[1].equals(months[i])){
                 month = i+1;
                 break;
@@ -113,16 +120,15 @@ public class Main {
         if(month < 10){
             args[1] = "0" + month;
         }else{
-            args[1] = new Integer(month).toString();
+            args[1] = Integer.toString(month);
         }
 
         if(args[0].length() < 2){
             args[0] = "0" + args[0];
         }
 
-
+        
         for(int i = 0; i < args.length; i++){
-            //System.out.println(i);
             out[i] = args[args.length - 1 - i];
         }
         return String.join("-", out);
@@ -134,7 +140,7 @@ public class Main {
         ArrayList<ArrayList<String>> columns = new ArrayList<>();
         int[] longestEntry = new int[headers.length];
         for(int i = 0; i < headers.length; i++){
-            columns.add(new ArrayList<String>());
+            columns.add(new ArrayList<>());
             longestEntry[i] = headers[i].length();
         }
         for(Individual i : individuals){
@@ -154,25 +160,25 @@ public class Main {
             if(convertDateYMD(i.getBirthDate()).length() > longestEntry[3]){
                 longestEntry[3] = convertDateYMD(i.getBirthDate()).length();
             }
-            columns.get(4).add(new Integer(i.getAge()).toString());
-            if(new Integer(i.getAge()).toString().length() > longestEntry[4]){
-                longestEntry[4] = new Integer(i.getAge()).toString().length();
+            columns.get(4).add(Integer.toString(i.getAge()));
+            if(Integer.toString(i.getAge()).length() > longestEntry[4]){
+                longestEntry[4] = Integer.toString(i.getAge()).length();
             }
-            columns.get(5).add((i.getAlive() ? "True" : "False"));
-            if((i.getAlive() ? "True" : "False").length() > longestEntry[5]){
-                longestEntry[5] = (i.getAlive() ? "True" : "False").length();
+            columns.get(5).add((i.isAlive() ? "True" : "False"));
+            if((i.isAlive() ? "True" : "False").length() > longestEntry[5]){
+                longestEntry[5] = (i.isAlive() ? "True" : "False").length();
             }
             columns.get(6).add(convertDateYMD(i.getDeathDate()));
             if(convertDateYMD(i.getDeathDate()).length() > longestEntry[6]){
                 longestEntry[6] = convertDateYMD(i.getDeathDate()).length();
             }
-            columns.get(7).add(i.getChildIn());
-            if(i.getChildIn().length() > longestEntry[7]){
-                longestEntry[7] = i.getChildIn().length();
+            columns.get(7).add(i.getFAMC());
+            if(i.getFAMC().length() > longestEntry[7]){
+                longestEntry[7] = i.getFAMC().length();
             }
-            columns.get(8).add(i.getSpouseIn());
-            if(i.getSpouseIn().length() > longestEntry[8]){
-                longestEntry[8] = i.getSpouseIn().length();
+            columns.get(8).add(i.getFAMS());
+            if(i.getFAMS().length() > longestEntry[8]){
+                longestEntry[8] = i.getFAMS().length();
             }
         }
 
@@ -204,26 +210,16 @@ public class Main {
             }
             System.out.println();
         }
-
-
-
-
-
+        System.out.println();
+    }
+    
+    private static void printFamilies() {
         System.out.println("Families");
-        headers = new String[8];
-        //headers = {"ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"};
-        headers[0] = "ID";
-        headers[1] = "Married";
-        headers[2] = "Divorced";
-        headers[3] = "Husband ID";
-        headers[4] = "Husband Name";
-        headers[5] = "Wife ID";
-        headers[6] = "Wife Name";
-        headers[7] = "Children";
-        columns = new ArrayList<>();
-        longestEntry = new int[headers.length];
+        String[] headers = {"ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"};
+        ArrayList<ArrayList<String>>columns = new ArrayList<>();
+        int[] longestEntry = new int[headers.length];
         for(int i = 0; i < headers.length; i++){
-            columns.add(new ArrayList<String>());
+            columns.add(new ArrayList<>());
             longestEntry[i] = headers[i].length();
         }
         for(Family f : families){
@@ -262,24 +258,17 @@ public class Main {
                 longestEntry[6] = f.getWifeName().length();
             }
 
-            String childrenstr = "{";
-            for(int j = 0; j < f.getChildrenIds().size(); j++){
-                if(j > 0){
-                    childrenstr += ", ";
-                }
-                childrenstr += f.getChildrenIds().get(j);
-            }
-            childrenstr += "}";
-            if(f.getChildrenIds().size() == 0){
+            String childrenstr;
+            if(f.getChildrenIds().isEmpty()){
                 childrenstr = "NA";
+            } else {
+                childrenstr = f.getChildrenIds().toString();
             }
             columns.get(7).add(childrenstr);
             if(childrenstr.length() > longestEntry[7]){
                 longestEntry[7] = childrenstr.length();
             }
         }
-
-
 
         for(int i = 0; i < longestEntry.length; i++){
             longestEntry[i] += 4;
@@ -309,6 +298,7 @@ public class Main {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     private static void addPeople(){
@@ -331,10 +321,10 @@ public class Main {
                             indi.setBirthDate(String.join(" ", c.children.get(0).arguments));
                             break;
                         case "FAMC":
-                            indi.setChildIn(c.arguments[0]);
+                            indi.setFAMC(c.arguments[0]);
                             break;
                         case "FAMS":
-                            indi.setSpouseIn(c.arguments[0]);
+                            indi.setFAMS(c.arguments[0]);
                             break;
                     }
                 }
@@ -443,7 +433,7 @@ public class Main {
 
             if (valid) {
                 boolean inTags = false;
-                for (String s : validtags.get(level)) {
+                for (String s : VALID_TAGS[level]) {
                     if (s.equals(tag))
                         inTags = true;
                 }
