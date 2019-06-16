@@ -1,4 +1,7 @@
 
+import java.util.Objects;
+
+
 /**
  * Represents an entity created from a GGEDCOM file.
  * Currently extended by Individual and Family
@@ -7,10 +10,7 @@
 
 public abstract class GedcomObject{
 
-    /**
-     * Id of this entity as stored in the GEDCOM file
-     */
-    protected String id;
+    private String id;
 
     /**
      * Default constructor creates GEDCOM Object with no ID. 
@@ -48,5 +48,22 @@ public abstract class GedcomObject{
     @Override
     public String toString() {
         return id;
+    }
+    
+    /**
+     * Checks to see if two GedcomObjects have the same ID
+     * @param obj Object to compare against this object
+     * @return true if obj is a GedcomObject with the same ID
+     */
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof GedcomObject && ((GedcomObject)obj).getId().equals(this.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }

@@ -90,8 +90,56 @@ public class Main {
         Collections.sort(individuals, new SortById());
         Collections.sort(families, new SortById());
 
-        printPeople();
-        printFamilies();
+        printPeople(individuals);
+        printFamilies(families);
+        
+        //Call User stories here
+        //US01
+        //US02
+        //etc.
+        
+        //US17
+        System.out.print("US17: ");
+        ArrayList<Individual> creeps = US17.findParentsMarriedToChildren(individuals, families);
+        if (creeps.size() > 0) {
+            System.out.println("WARNING: The following individuals married one of their own children");
+            printPeople(creeps);
+        } else {
+            System.out.println("No Problems");
+        }
+        //US22
+        System.out.print("US22: ");
+        ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
+        boolean duplicateIndividuals = false;
+        if(duplicates.size() > 0){
+            System.out.println("ERROR: The following individuals have duplicate IDs");
+            duplicateIndividuals = true;
+            ArrayList<Individual> iDuplicates = new ArrayList<>();
+            for(int i = 0; i < duplicates.size(); i++) {
+                for(int j = 0; j < individuals.size(); j++) {
+                    if(duplicates.get(i).equals(individuals.get(j))) {
+                        iDuplicates.add(individuals.get(j));
+                    }
+                }
+            }
+            printPeople(iDuplicates);
+        } 
+        duplicates = US22.uniqueIDs(new ArrayList<>(families));
+        if(duplicates.size() > 0) {
+            System.out.println("ERROR: The following Families have duplicate IDs");
+            ArrayList<Family> fDuplicates = new ArrayList<>();
+            for(int i = 0; i < duplicates.size(); i++) {
+                for(int j = 0; j < families.size(); j++) {
+                    if(duplicates.get(i).equals(families.get(j))) {
+                        fDuplicates.add(families.get(j));
+                    }
+                }
+            }
+            printFamilies(fDuplicates);
+        } else if (!duplicateIndividuals) {
+            System.out.println("No Problems");
+        }
+        
     }
 
     /**
@@ -134,7 +182,7 @@ public class Main {
         return String.join("-", out);
     }
 
-    private static void printPeople(){
+    private static void printPeople(ArrayList<Individual> indis){
         System.out.println("Individuals");
         String[] headers = {"ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"};
         ArrayList<ArrayList<String>> columns = new ArrayList<>();
@@ -143,7 +191,7 @@ public class Main {
             columns.add(new ArrayList<>());
             longestEntry[i] = headers[i].length();
         }
-        for(Individual i : individuals){
+        for(Individual i : indis){
             columns.get(0).add(i.getId());
             if(i.getId().length() > longestEntry[0]){
                 longestEntry[0] = i.getId().length();
@@ -211,7 +259,7 @@ public class Main {
             System.out.print(padded);
         }
         System.out.println();
-        for(int j = 0; j < individuals.size(); j++) {
+        for(int j = 0; j < indis.size(); j++) {
             for (int i = 0; i < headers.length; i++) {
                 String padded = columns.get(i).get(j);
                 while(padded.length() < longestEntry[i]){
@@ -227,7 +275,7 @@ public class Main {
         System.out.println();
     }
     
-    private static void printFamilies() {
+    private static void printFamilies(ArrayList<Family> fams) {
         System.out.println("Families");
         String[] headers = {"ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"};
         ArrayList<ArrayList<String>>columns = new ArrayList<>();
@@ -236,7 +284,7 @@ public class Main {
             columns.add(new ArrayList<>());
             longestEntry[i] = headers[i].length();
         }
-        for(Family f : families){
+        for(Family f : fams){
             columns.get(0).add(f.getId());
             if(f.getId().length() > longestEntry[0]){
                 longestEntry[0] = f.getId().length();
@@ -299,7 +347,7 @@ public class Main {
             System.out.print(padded);
         }
         System.out.println();
-        for(int j = 0; j < families.size(); j++) {
+        for(int j = 0; j < fams.size(); j++) {
             for (int i = 0; i < headers.length; i++) {
                 String padded = columns.get(i).get(j);
                 while(padded.length() < longestEntry[i]){
@@ -473,6 +521,7 @@ public class Main {
         }
     }
 
+    
     /*private static void storeIndividuals(){
       //Test to see if my constructors work right
       Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
