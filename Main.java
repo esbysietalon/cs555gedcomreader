@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+class USOutput{
+}
 class Tag{
     String tag;
     String[] arguments;
@@ -125,6 +127,14 @@ public class Main {
             System.out.println("No Problems");
         }
         //US02
+        System.out.print("US02: ");
+        ArrayList<Individual> invalidMarriages = US02.unbornMarriage(families);
+        if(invalidMarriages.size() > 0) {
+            System.out.println("WARNING: The following people were married before they were born\n");
+            printPeople(invalidMarriages);
+        }else{
+            System.out.println("No Problems");
+        }
         //etc.
 
         //US17
@@ -190,11 +200,7 @@ public class Main {
 
     }
 
-    /**
-     * Converts dates from format used in GEDCOM files to YYYY-MM-DD
-     * @param date Date as stored in GEDCOM file
-     * @return String containing date in YYYY-MM-DD format
-     */
+
     public static GedcomObject getById(String id){
         for(Individual i : individuals){
             if(i.getId().equals(id))
@@ -206,6 +212,12 @@ public class Main {
         }
         return null;
     }
+
+    /**
+     * Converts dates from format used in GEDCOM files to YYYY-MM-DD
+     * @param date Date as stored in GEDCOM file
+     * @return String containing date in YYYY-MM-DD format
+     */
     public static String convertDateYMD(String date){
         String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
@@ -240,6 +252,7 @@ public class Main {
         }
         return String.join("-", out);
     }
+    //date 1 is past, date 2 is future
     public static double getDateDistance(String date1, String date2){
         String[] thenData = date1.split("-", -1);
         String[] nowData = date2.split("-", -1);
