@@ -38,18 +38,18 @@ class SortById implements Comparator<GedcomObject>{
 }
 
 /**
- * 
+ *
  * The Assignment
- * 
+ *
  * @author Jose Joaquin Talon
  * @author Nick Marzullo
  * @author Eli Weinberger
  */
 public class Main {
-    private static final String[][] VALID_TAGS = {{"HEAD", "TRLR", "INDI", "FAM", "NOTE"}, 
-                                                {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"}, 
+    private static final String[][] VALID_TAGS = {{"HEAD", "TRLR", "INDI", "FAM", "NOTE"},
+                                                {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"},
                                                 {"DATE"}};
-    
+
     private static BufferedReader reader;
     private static ArrayList<String> lines;
     private static ArrayList<String[]> toParse;
@@ -93,7 +93,7 @@ public class Main {
 
         printPeople(individuals);
         printFamilies(families);
-        
+
         //Call User stories here
         //US01
         System.out.print("US01: ");
@@ -126,7 +126,7 @@ public class Main {
         }
         //US02
         //etc.
-        
+
         //US17
         System.out.print("US17: ");
         ArrayList<Individual> creeps = US17.findParentsMarriedToChildren(individuals, families);
@@ -152,7 +152,7 @@ public class Main {
                 }
             }
             printPeople(iDuplicates);
-        } 
+        }
         duplicates = US22.uniqueIDs(new ArrayList<>(families));
         if(duplicates.size() > 0) {
             System.out.println("ERROR: The following Families have duplicate IDs");
@@ -168,7 +168,26 @@ public class Main {
         } else if (!duplicateIndividuals) {
             System.out.println("No Problems");
         }
-        
+
+        System.out.print("US29: ");
+        ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
+        if (deadPeople.size() > 0) {
+            System.out.println("WARNING: The following individuals are dead:");
+            printPeople(deadPeople);
+        } else {
+            System.out.println("No Problems");
+        }
+
+        System.out.print("US30: ");
+        ArrayList<Individual> livingMarried = US30.listLivingMarried(individuals, families);
+        if (livingMarried.size() > 0) {
+            System.out.println("WARNING: The following individuals living and married:");
+            printPeople(livingMarried);
+        } else {
+            System.out.println("No Problems");
+        }
+
+
     }
 
     /**
@@ -190,11 +209,11 @@ public class Main {
     public static String convertDateYMD(String date){
         String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
-        
+
         if(args.length != 3){
             return date;
         }
-        
+
         String[] out = new String[3];
 
         int month = -1;
@@ -215,7 +234,7 @@ public class Main {
             args[0] = "0" + args[0];
         }
 
-        
+
         for(int i = 0; i < args.length; i++){
             out[i] = args[args.length - 1 - i];
         }
@@ -329,7 +348,7 @@ public class Main {
         }
         System.out.println();
     }
-    
+
     private static void printFamilies(ArrayList<Family> fams) {
         System.out.println("Families");
         String[] headers = {"ID", "Married", "Divorced", "Husband ID", "Husband Name", "Wife ID", "Wife Name", "Children"};
@@ -578,7 +597,7 @@ public class Main {
         }
     }
 
-    
+
     /*private static void storeIndividuals(){
       //Test to see if my constructors work right
       Individual testIndi = new Individual("test", "test", "test", "test", "test", "test", "test");
