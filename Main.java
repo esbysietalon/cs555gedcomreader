@@ -10,11 +10,12 @@ class Tag{
     String tag;
     String[] arguments;
     ArrayList<Tag> children;
-    
+    Tag parent;
+
     public Tag(){
         children = new ArrayList<>();
     }
-    
+
     @Override
     public String toString(){
         String output = tag + " ";
@@ -40,7 +41,7 @@ class SortById implements Comparator<GedcomObject>{
  * 
  * The Assignment
  * 
- * @author Jose Talon
+ * @author Jose Joaquin Talon
  * @author Nick Marzullo
  * @author Eli Weinberger
  */
@@ -95,6 +96,16 @@ public class Main {
         
         //Call User stories here
         //US01
+        /*System.out.print("US01: ");
+        ArrayList<Tag> invalidDates = US01.futureDates(parsedTags);
+        if(invalidDates.size() > 0) {
+            System.out.println("WARNING: The following dates/events happen in the future");
+            for (Tag t : invalidDates) {
+                System.out.println(t + " from  " + t.parent + " in " + t.parent.parent);
+            }
+        }else{
+            System.out.println("No Problems");
+        }*/
         //US02
         //etc.
         
@@ -524,10 +535,12 @@ public class Main {
             if(valid){
                 Tag newtag = new Tag();
                 newtag.tag = tag.trim();
+                newtag.parent = null;
                 newtag.arguments = arguments.split(" ", -1);
                 if(level > 0){
                     if(lastTag[level-1] != null){
                         lastTag[level-1].children.add(newtag);
+                        newtag.parent = lastTag[level-1];
                     }
                 }
                 lastTag[level] = newtag;

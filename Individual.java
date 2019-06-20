@@ -115,10 +115,10 @@ public class Individual extends GedcomObject{
         int nowday;
         String nowDate;
         if(isAlive()) {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             nowDate = dateFormat.format(date);
-            String[] nowdate = nowDate.split(" ", -1);
+            String[] nowdate = nowDate.split("-", -1);
             nowyear = Integer.parseInt(nowdate[0]);
             nowmonth = Integer.parseInt(nowdate[1]);
             nowday = Integer.parseInt(nowdate[2]);
