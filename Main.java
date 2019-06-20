@@ -96,16 +96,34 @@ public class Main {
         
         //Call User stories here
         //US01
-        /*System.out.print("US01: ");
+        System.out.print("US01: ");
         ArrayList<Tag> invalidDates = US01.futureDates(parsedTags);
         if(invalidDates.size() > 0) {
-            System.out.println("WARNING: The following dates/events happen in the future");
+            System.out.println("WARNING: The following records contain dates/events that happen in the future\n");
+            ArrayList<Family> invalidFamilies = new ArrayList<Family>();
+            ArrayList<Individual> invalidIndividuals = new ArrayList<Individual>();
             for (Tag t : invalidDates) {
-                System.out.println(t + " from  " + t.parent + " in " + t.parent.parent);
+                Tag grandparent = t.parent.parent;
+                if(grandparent.tag.equals("FAM")){
+                    Family fam = (Family)getById(grandparent.arguments[0]);
+                    if(!invalidFamilies.contains(fam))
+                        invalidFamilies.add(fam);
+                }
+                if(grandparent.tag.equals("INDI")){
+                    Individual indi = (Individual)getById(grandparent.arguments[0]);
+                    if(!invalidIndividuals.contains(indi))
+                        invalidIndividuals.add(indi);
+                }
+            }
+            if(invalidFamilies.size() > 0){
+                printFamilies(invalidFamilies);
+            }
+            if(invalidIndividuals.size() > 0){
+                printPeople(invalidIndividuals);
             }
         }else{
             System.out.println("No Problems");
-        }*/
+        }
         //US02
         //etc.
         
@@ -158,6 +176,17 @@ public class Main {
      * @param date Date as stored in GEDCOM file
      * @return String containing date in YYYY-MM-DD format
      */
+    public static GedcomObject getById(String id){
+        for(Individual i : individuals){
+            if(i.getId().equals(id))
+                return i;
+        }
+        for(Family f : families){
+            if(f.getId().equals(id))
+                return f;
+        }
+        return null;
+    }
     public static String convertDateYMD(String date){
         String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         String[] args = date.split(" ", -1);
