@@ -11,7 +11,7 @@ class USOutput{
 
     }
     String errormsg;
-    ArrayList<>
+    ArrayList<T> output;
 }
 class Tag{
     String tag;
