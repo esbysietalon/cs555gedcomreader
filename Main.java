@@ -7,11 +7,6 @@ import java.io.IOException;
 import java.util.*;
 
 class USOutput{
-    public USOutput<T>(){
-
-    }
-    String errormsg;
-    ArrayList<T> output;
 }
 class Tag{
     String tag;
@@ -133,30 +128,10 @@ public class Main {
         }
         //US02
         System.out.print("US02: ");
-        ArrayList<Individual> invalidMarriages = US01.unbornMarriage(parsedTags);
-        if(invalidDates.size() > 0) {
-            System.out.println("WARNING: The following people are married before they are born\n");
-            ArrayList<Family> invalidFamilies = new ArrayList<Family>();
-            ArrayList<Individual> invalidIndividuals = new ArrayList<Individual>();
-            for (Tag t : invalidDates) {
-                Tag grandparent = t.parent.parent;
-                if(grandparent.tag.equals("FAM")){
-                    Family fam = (Family)getById(grandparent.arguments[0]);
-                    if(!invalidFamilies.contains(fam))
-                        invalidFamilies.add(fam);
-                }
-                if(grandparent.tag.equals("INDI")){
-                    Individual indi = (Individual)getById(grandparent.arguments[0]);
-                    if(!invalidIndividuals.contains(indi))
-                        invalidIndividuals.add(indi);
-                }
-            }
-            if(invalidFamilies.size() > 0){
-                printFamilies(invalidFamilies);
-            }
-            if(invalidIndividuals.size() > 0){
-                printPeople(invalidIndividuals);
-            }
+        ArrayList<Individual> invalidMarriages = US02.unbornMarriage(families);
+        if(invalidMarriages.size() > 0) {
+            System.out.println("WARNING: The following people were married before they were born\n");
+            printPeople(invalidMarriages);
         }else{
             System.out.println("No Problems");
         }

@@ -1,12 +1,14 @@
+import java.util.ArrayList;
+
 public class US02{
     public static ArrayList<Individual> unbornMarriage(ArrayList<Family> marriages){
         ArrayList<Individual> output = new ArrayList<Individual>();
-        for(Fam f : marriages){
+        for(Family f : marriages){
             String badFormatDate = f.getMarriageDate();
             String marrDate = Main.convertDateYMD(badFormatDate);
 
-            Individual husb = Main.getById(f.getHusbandId());
-            Individual wife = Main.getById(f.getWifeId());
+            Individual husb = (Individual) Main.getById(f.getHusbandId());
+            Individual wife = (Individual) Main.getById(f.getWifeId());
 
             String hbirthBadFormat = husb.getBirthDate();
             String wbirthBadFormat = wife.getBirthDate();
