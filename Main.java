@@ -179,6 +179,8 @@ public class Main {
             System.out.println("No Problems");
         }
 
+
+        //Test Userstory 29
         System.out.print("US29: ");
         ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
         if (deadPeople.size() > 0) {
@@ -187,7 +189,9 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        //End test usertory 29
 
+        //Test Userstory 30
         System.out.print("US30: ");
         ArrayList<Individual> livingMarried = US30.listLivingMarried(individuals, families);
         if (livingMarried.size() > 0) {
@@ -196,6 +200,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        //End test usertory 30
 
 
     }
