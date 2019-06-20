@@ -200,6 +200,32 @@ public class Main {
 
     }
 
+    //unused US Output printer - maybe?
+    public static void printUSOutput(int level, String msg, ArrayList<GedcomObject> USOutput){
+        if(USOutput.size() > 0) {
+            String output = "";
+            switch (level) {
+                case 0:
+                    output += "NOTICE: ";
+                    break;
+                case 1:
+                    output += "WARNING: ";
+                    break;
+                case 2:
+                    output += "ERROR: ";
+                    break;
+            }
+            System.out.println(output + msg);
+            if(USOutput instanceof ArrayList<Individuals>){
+                printPeople(USOutput);
+            }else if(USOutput instanceof ArrayList<Family>){
+                printFamilies(USOutput);
+            }
+        }else{
+            System.out.println("No problems.");
+        }
+    }
+
 
     public static GedcomObject getById(String id){
         for(Individual i : individuals){

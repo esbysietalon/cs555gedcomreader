@@ -5,6 +5,9 @@ public class US02{
         ArrayList<Individual> output = new ArrayList<Individual>();
         for(Family f : marriages){
             String badFormatDate = f.getMarriageDate();
+            if(badFormatDate.equals("-")){
+                continue;
+            }
             String marrDate = Main.convertDateYMD(badFormatDate);
 
             Individual husb = (Individual) Main.getById(f.getHusbandId());
