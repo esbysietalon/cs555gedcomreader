@@ -113,29 +113,31 @@ public class Individual extends GedcomObject{
         int nowyear;
         int nowmonth;
         int nowday;
+        String nowDate;
         if(isAlive()) {
             DateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
             Date date = new Date();
-            String today = dateFormat.format(date);
-            String[] nowdate = today.split(" ", -1);
+            nowDate = dateFormat.format(date);
+            String[] nowdate = nowDate.split(" ", -1);
             nowyear = Integer.parseInt(nowdate[0]);
             nowmonth = Integer.parseInt(nowdate[1]);
             nowday = Integer.parseInt(nowdate[2]);
         }else{
-            String preDate = Main.convertDateYMD(deathDate);
-            String[] nowdate = preDate.split("-", -1);
+            nowDate = Main.convertDateYMD(deathDate);
+            String[] nowdate = nowDate.split("-", -1);
             nowyear = Integer.parseInt(nowdate[0]);
             nowmonth = Integer.parseInt(nowdate[1]);
             nowday = Integer.parseInt(nowdate[2]);
         }
-        int age = nowyear - thenyear;
+        int age = (int)Main.getDateDistance(newDate, nowDate);
+        /*int age = nowyear - thenyear;
         if(thenmonth > nowmonth){
             age--;
         }else{
             if(thenday > nowday){
                 age--;
             }
-        }
+        }*/
 
         return age;
     }

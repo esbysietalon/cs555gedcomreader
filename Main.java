@@ -181,6 +181,21 @@ public class Main {
         }
         return String.join("-", out);
     }
+    public static double getDateDistance(String date1, String date2){
+        String[] thenData = date1.split("-", -1);
+        String[] nowData = date2.split("-", -1);
+
+        int y1 = Integer.parseInt(thenData[0]);
+        int y2 = Integer.parseInt(nowData[0]);
+        int m1 = Integer.parseInt(thenData[1]);
+        int m2 = Integer.parseInt(nowData[1]);
+        int d1 = Integer.parseInt(thenData[2]);
+        int d2 = Integer.parseInt(nowData[2]);
+
+        double out = y2 - y1 + (m2 - m1) / 12.0 + (d2 - d1) / 365.0;
+
+        return out;
+    }
 
     private static void printPeople(ArrayList<Individual> indis){
         System.out.println("Individuals");
