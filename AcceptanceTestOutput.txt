@@ -1,3 +1,4 @@
+Individuals
    ID             Name             Gender     Birthday     Age    Alive      Death       Child     Spouse
   @I1@        John /Smith/           M       1957-03-10    62     True         NA          NA    [@F1@, @F2@]
   @I1@    Duplicate /McTestman/      M       2020-03-10     0     True         NA          NA        NA
