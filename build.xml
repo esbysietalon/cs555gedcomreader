@@ -5,34 +5,15 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="cs555">
     <property environment="env"/>
-    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.api_5.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.engine_5.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.params_5.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.commons_1.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.engine_1.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.launcher_1.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.runner_1.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.suite.api_1.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit.vintage.engine_5.1.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.opentest4j_1.0.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.apiguardian_1.0.0.v20180327-1502.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
-    </path>
     <path id="cs555.classpath">
         <pathelement location="."/>
-        <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <target name="init">
         <copy includeemptydirs="false" todir=".">
             <fileset dir=".">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -65,28 +46,5 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
-    </target>
-    <target name="Main (1)">
-        <java classname="Main" failonerror="true" fork="yes">
-            <arg line="Eli_GEDCOM.ged"/>
-            <classpath refid="cs555.classpath"/>
-        </java>
-    </target>
-    <target name="Test01">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="Test01" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="cs555.classpath"/>
-        </junit>
-    </target>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
     </target>
 </project>
