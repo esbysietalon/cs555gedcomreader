@@ -5,15 +5,18 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="cs555">
     <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="cs555.classpath">
         <pathelement location="."/>
+        <pathelement location="junit4.10/junit-4.10.jar"/>
     </path>
     <target name="init">
         <copy includeemptydirs="false" todir=".">
             <fileset dir=".">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -46,5 +49,28 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="Main (1)">
+        <java classname="Main" failonerror="true" fork="yes">
+            <arg line="Eli_GEDCOM.ged"/>
+            <classpath refid="cs555.classpath"/>
+        </java>
+    </target>
+    <target name="Test01">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Test01" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="cs555.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
