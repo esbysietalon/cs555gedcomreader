@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class US02{
-    public static ArrayList<Individual> unbornMarriage(ArrayList<Family> marriages){
+    public static USOutput unbornMarriage(ArrayList<Family> marriages){
         ArrayList<Individual> output = new ArrayList<Individual>();
         for(Family f : marriages){
             String badFormatDate = f.getMarriageDate();
@@ -26,6 +26,7 @@ public class US02{
                 output.add(wife);
             }
         }
-        return output;
+        USOutput realOutput = new USOutput(output, null);
+        return realOutput;
     }
 }

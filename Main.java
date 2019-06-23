@@ -19,8 +19,14 @@ class USOutput{
         return fam;
     }
     public USOutput(ArrayList<Individual> i, ArrayList<Family> f){
-        indi = i;
-        fam = f;
+        if(i != null)
+            indi = i;
+        else
+            indi = new ArrayList<>();
+        if(f != null)
+            fam = f;
+        else
+            fam = new ArrayList<>();
     }
 }
 class Tag{
@@ -119,13 +125,8 @@ public class Main {
         
         //US02
         System.out.print("US02: ");
-        ArrayList<Individual> invalidMarriages = US02.unbornMarriage(families);
-        if(invalidMarriages.size() > 0) {
-            System.out.println("WARNING: The following people were married before they were born\n");
-            printPeople(invalidMarriages);
-        }else{
-            System.out.println("No Problems");
-        }
+        USOutput invalidMarriages = US02.unbornMarriage(families);
+        printUSOutput(1, "The following people were married before they were born", invalidMarriages);
         //etc.
 
         //US17
