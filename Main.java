@@ -12,6 +12,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
 class USOutput{
     private ArrayList<Individual> indi;
     private ArrayList<Family> fam;
@@ -79,17 +83,19 @@ public class Main {
     private static ArrayList<Individual> individuals;
     private static ArrayList<Family> families;
 
-    public static void main(String[] args) {
-
-        //Check to see if a GEGCOM File was provided
-        if (args.length < 1) {
-            System.err.println("Error: please specify a file name/path.");
-            return;
-        }
-
-        //Read data from GEDCOM file
-        try {
-            reader = new BufferedReader(new FileReader(args[0]));
+    
+    public ArrayList<Family> getFamilies(){
+    	return families;
+    }
+    public ArrayList<Individual> getIndividuals(){
+    	return individuals;
+    }
+    public ArrayList<Tag> getTags(){
+    	return parsedTags;
+    }
+    public static void readData(String filename) {
+    	try {
+            reader = new BufferedReader(new FileReader(filename));
             lines = new ArrayList<>();
             toParse = new ArrayList<>();
             parsedTags = new ArrayList<>();
@@ -112,10 +118,22 @@ public class Main {
 
         Collections.sort(individuals, new SortById());
         Collections.sort(families, new SortById());
+    }
+    
+    public static void main(String[] args) {
 
+        //Check to see if a GEGCOM File was provided
+        if (args.length < 1) {
+            System.err.println("Error: please specify a file name/path.");
+            return;
+        }
+
+        //Read data from GEDCOM file
+        readData(args[0]);
+        
+        //print data from GEDCOM file
         printPeople(individuals);
         printFamilies(families);
-
         //Call User stories here
         //US01
         System.out.print("US01: ");
@@ -201,7 +219,33 @@ public class Main {
             System.out.println("There are no living married people");
         }
         //End test usertory 30
-
+        
+        //Tests?
+        System.out.println("Running tests on US01");
+        Result result = JUnitCore.runClasses(Test01.class);
+        
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+         }
+   		
+         if(result.wasSuccessful())
+        	 System.out.println("US01 tests passed");
+         else
+        	 System.out.println("US01 tests failed");
+        
+        System.out.println("Running tests on US02");
+        
+        result = JUnitCore.runClasses(Test02.class);
+        
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+         }
+   		
+         if(result.wasSuccessful())
+        	 System.out.println("US02 tests passed");
+         else
+        	 System.out.println("US02 tests failed");
+        
 
     }
 
