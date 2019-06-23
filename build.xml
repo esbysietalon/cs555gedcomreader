@@ -12,6 +12,7 @@
     <path id="cs555.classpath">
         <pathelement location="."/>
         <pathelement location="junit4.10/junit-4.10.jar"/>
+        <pathelement location="junit4.10/junit-dep-4.10.jar"/>
     </path>
     <target name="init">
         <copy includeemptydirs="false" todir=".">
