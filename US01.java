@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class US01{
-    public static ArrayList<Tag> futureDates(ArrayList<Tag> tags){
-        ArrayList<Tag> output = new ArrayList<Tag>();
+    public static USOutput futureDates(ArrayList<Tag> tags){
+        ArrayList<Individual> outputIndi = new ArrayList<>();
+        ArrayList<Family> outputFam = new ArrayList<>();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -17,11 +18,15 @@ public class US01{
                 continue;
             }
             String thenDate = Main.convertDateYMD(String.join(" ", t.arguments).trim());
-            //System.out.println(thenDate);
             if(Main.getDateDistance(thenDate, nowDate) <= 0){
-                output.add(t);
+                if(t.parent != null && t.parent.parent != null)
+                    if(t.parent.parent.tag.equals("FAM"))    
+                        outputFam.add((Family)Main.getById(t.parent.parent.arguments[0]));
+                    else if(t.parent.parent.tag.equals("INDI"))
+                        outputIndi.add((Individual)Main.getById(t.parent.parent.arguments[0]));
             }
         }
+        USOutput output = new USOutput(outputIndi, outputFam);
         return output;
     }
 }

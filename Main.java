@@ -7,6 +7,21 @@ import java.io.IOException;
 import java.util.*;
 
 class USOutput{
+    private ArrayList<Individual> indi;
+    private ArrayList<Family> fam;
+    public boolean isEmpty(){
+        return (indi.size() + fam.size() == 0);
+    }
+    public ArrayList<Individual> getIndi(){
+        return indi;
+    }
+    public ArrayList<Family> getFam(){
+        return fam;
+    }
+    public USOutput(ArrayList<Individual> i, ArrayList<Family> f){
+        indi = i;
+        fam = f;
+    }
 }
 class Tag{
     String tag;
@@ -99,33 +114,9 @@ public class Main {
         //Call User stories here
         //US01
         System.out.print("US01: ");
-        ArrayList<Tag> invalidDates = US01.futureDates(parsedTags);
-        if(invalidDates.size() > 0) {
-            System.out.println("WARNING: The following records contain dates/events that happen in the future\n");
-            ArrayList<Family> invalidFamilies = new ArrayList<Family>();
-            ArrayList<Individual> invalidIndividuals = new ArrayList<Individual>();
-            for (Tag t : invalidDates) {
-                Tag grandparent = t.parent.parent;
-                if(grandparent.tag.equals("FAM")){
-                    Family fam = (Family)getById(grandparent.arguments[0]);
-                    if(!invalidFamilies.contains(fam))
-                        invalidFamilies.add(fam);
-                }
-                if(grandparent.tag.equals("INDI")){
-                    Individual indi = (Individual)getById(grandparent.arguments[0]);
-                    if(!invalidIndividuals.contains(indi))
-                        invalidIndividuals.add(indi);
-                }
-            }
-            if(invalidFamilies.size() > 0){
-                printFamilies(invalidFamilies);
-            }
-            if(invalidIndividuals.size() > 0){
-                printPeople(invalidIndividuals);
-            }
-        }else{
-            System.out.println("No Problems");
-        }
+        USOutput invalidDates = US01.futureDates(parsedTags);
+        printUSOutput(1, "The following records contain dates/events that happen in the future", invalidDates);
+        
         //US02
         System.out.print("US02: ");
         ArrayList<Individual> invalidMarriages = US02.unbornMarriage(families);
@@ -205,10 +196,10 @@ public class Main {
 
     }
 
-    /*
+    
     //unused US Output printer - maybe?
-    public static void printUSOutput(int level, String msg, ArrayList<GedcomObject> USOutput){
-        if(USOutput.size() > 0) {
+    public static void printUSOutput(int level, String msg, USOutput USOutput){
+        if(!USOutput.isEmpty()) {
             String output = "";
             switch (level) {
                 case 0:
@@ -222,16 +213,16 @@ public class Main {
                     break;
             }
             System.out.println(output + msg);
-            if(USOutput instanceof ArrayList<Individual>){
-                printPeople(USOutput);
-            }else if(USOutput instanceof ArrayList<Family>){
-                printFamilies(USOutput);
+            if(USOutput.getIndi().size() > 0){
+                printPeople(USOutput.getIndi());
+            }else if(USOutput.getFam().size() > 0){
+                printFamilies(USOutput.getFam());
             }
         }else{
             System.out.println("No problems.");
         }
     }
-    */
+    
 
     public static GedcomObject getById(String id){
         for(Individual i : individuals){
