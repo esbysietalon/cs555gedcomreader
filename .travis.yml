@@ -6,4 +6,5 @@ before_install:
   - tar -xzvf apache-ant-1.10.6-bin.tar.gz
   - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
   - echo $(ant -version)
+  - cd java
 script: ant build
