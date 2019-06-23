@@ -179,27 +179,59 @@ public class Main {
             System.out.println("No Problems");
         }
 
+
+        //Test Userstory 29
         System.out.print("US29: ");
         ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
         if (deadPeople.size() > 0) {
-            System.out.println("WARNING: The following individuals are dead:");
+            System.out.println("The following individuals are dead:");
             printPeople(deadPeople);
         } else {
-            System.out.println("No Problems");
+            System.out.println("No one is dead.");
         }
+        //End test usertory 29
 
+        //Test Userstory 30
         System.out.print("US30: ");
         ArrayList<Individual> livingMarried = US30.listLivingMarried(individuals, families);
         if (livingMarried.size() > 0) {
-            System.out.println("WARNING: The following individuals living and married:");
+            System.out.println("The following individuals living and married:");
             printPeople(livingMarried);
         } else {
-            System.out.println("No Problems");
+            System.out.println("There are no living married people");
         }
+        //End test usertory 30
 
 
     }
 
+    /*
+    //unused US Output printer - maybe?
+    public static void printUSOutput(int level, String msg, ArrayList<GedcomObject> USOutput){
+        if(USOutput.size() > 0) {
+            String output = "";
+            switch (level) {
+                case 0:
+                    output += "NOTICE: ";
+                    break;
+                case 1:
+                    output += "WARNING: ";
+                    break;
+                case 2:
+                    output += "ERROR: ";
+                    break;
+            }
+            System.out.println(output + msg);
+            if(USOutput instanceof ArrayList<Individual>){
+                printPeople(USOutput);
+            }else if(USOutput instanceof ArrayList<Family>){
+                printFamilies(USOutput);
+            }
+        }else{
+            System.out.println("No problems.");
+        }
+    }
+    */
 
     public static GedcomObject getById(String id){
         for(Individual i : individuals){
