@@ -184,10 +184,10 @@ public class Main {
         System.out.print("US29: ");
         ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
         if (deadPeople.size() > 0) {
-            System.out.println("WARNING: The following individuals are dead:");
+            System.out.println("The following individuals are dead:");
             printPeople(deadPeople);
         } else {
-            System.out.println("No Problems");
+            System.out.println("No one is dead.");
         }
         //End test usertory 29
 
@@ -195,10 +195,10 @@ public class Main {
         System.out.print("US30: ");
         ArrayList<Individual> livingMarried = US30.listLivingMarried(individuals, families);
         if (livingMarried.size() > 0) {
-            System.out.println("WARNING: The following individuals living and married:");
+            System.out.println("The following individuals living and married:");
             printPeople(livingMarried);
         } else {
-            System.out.println("No Problems");
+            System.out.println("There are no living married people");
         }
         //End test usertory 30
 
