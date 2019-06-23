@@ -137,6 +137,15 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        //US18
+        System.out.print("US18: ");
+        ArrayList<Family> incestousFamilies = US18.checkIncest(families);
+        if (incestousFamilies.size() > 0) {
+            System.out.println("WARNING: The following families have married siblings");
+            printFamilies(incestousFamilies);
+        } else {
+            System.out.println("No Problems");
+        }
         //US22
         System.out.print("US22: ");
         ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
