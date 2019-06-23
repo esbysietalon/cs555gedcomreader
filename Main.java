@@ -83,7 +83,7 @@ public class Main {
     private static ArrayList<Individual> individuals;
     private static ArrayList<Family> families;
 
-    
+
     public ArrayList<Family> getFamilies(){
     	return families;
     }
@@ -119,7 +119,7 @@ public class Main {
         Collections.sort(individuals, new SortById());
         Collections.sort(families, new SortById());
     }
-    
+
     public static void main(String[] args) {
 
         //Check to see if a GEGCOM File was provided
@@ -130,7 +130,7 @@ public class Main {
 
         //Read data from GEDCOM file
         readData(args[0]);
-        
+
         //print data from GEDCOM file
         printPeople(individuals);
         printFamilies(families);
@@ -139,7 +139,7 @@ public class Main {
         System.out.print("US01: ");
         USOutput invalidDates = US01.futureDates(parsedTags);
         printUSOutput(1, "The following records contain dates/events that happen in the future", invalidDates);
-        
+
         //US02
         System.out.print("US02: ");
         USOutput invalidMarriages = US02.unbornMarriage(families);
@@ -156,14 +156,14 @@ public class Main {
             System.out.println("No Problems");
         }
         //US18
-        System.out.print("US18: ");
-        ArrayList<Family> incestousFamilies = US18.checkIncest(families);
-        if (incestousFamilies.size() > 0) {
-            System.out.println("WARNING: The following families have married siblings");
-            printFamilies(incestousFamilies);
-        } else {
-            System.out.println("No Problems");
-        }
+        // System.out.print("US18: ");
+        // ArrayList<Family> incestousFamilies = US18.checkIncest(families);
+        // if (incestousFamilies.size() > 0) {
+        //     System.out.println("WARNING: The following families have married siblings");
+        //     printFamilies(incestousFamilies);
+        // } else {
+        //     System.out.println("No Problems");
+        // }
         //US22
         System.out.print("US22: ");
         ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
@@ -219,28 +219,28 @@ public class Main {
             System.out.println("There are no living married people");
         }
         //End test usertory 30
-        
+
         //Tests?
         /*System.out.println("Running tests on US01");
         Result result = JUnitCore.runClasses(Test01.class);
-        
+
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
          }
-   		
+
          if(result.wasSuccessful())
         	 System.out.println("US01 tests passed");
          else
         	 System.out.println("US01 tests failed");
-        
+
         System.out.println("Running tests on US02");
-        
+
         result = JUnitCore.runClasses(Test02.class);
-        
+
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
          }
-   		
+
          if(result.wasSuccessful())
         	 System.out.println("US02 tests passed");
          else
@@ -249,7 +249,7 @@ public class Main {
 
     }
 
-    
+
     //unused US Output printer - maybe?
     public static void printUSOutput(int level, String msg, USOutput USOutput){
         if(!USOutput.isEmpty()) {
@@ -275,7 +275,7 @@ public class Main {
             System.out.println("No Problems");
         }
     }
-    
+
 
     public static GedcomObject getById(String id){
         for(Individual i : individuals){
