@@ -1,6 +1,6 @@
 /**
  *
- * The Assignment
+ * SSW 555 WS
  *
  * @author Jose Joaquin Talon
  * @author Nick Marzullo
