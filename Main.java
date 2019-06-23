@@ -1,5 +1,11 @@
-//I pledge my honor that I have abided by the Stevens Honor System
-//Jose Joaquin Talon
+/**
+ *
+ * The Assignment
+ *
+ * @author Jose Joaquin Talon
+ * @author Nick Marzullo
+ * @author Eli Weinberger
+ */
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -60,14 +66,7 @@ class SortById implements Comparator<GedcomObject>{
     }
 }
 
-/**
- *
- * The Assignment
- *
- * @author Jose Joaquin Talon
- * @author Nick Marzullo
- * @author Eli Weinberger
- */
+
 public class Main {
     private static final String[][] VALID_TAGS = {{"HEAD", "TRLR", "INDI", "FAM", "NOTE"},
                                                 {"NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "MARR", "HUSB", "WIFE", "CHIL", "DIV"},
