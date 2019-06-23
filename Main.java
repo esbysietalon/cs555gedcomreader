@@ -12,9 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import org.junit.runner.JUnitCore;
+/*import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
+import org.junit.runner.notification.Failure;*/
 
 class USOutput{
     private ArrayList<Individual> indi;
@@ -221,7 +221,7 @@ public class Main {
         //End test usertory 30
         
         //Tests?
-        System.out.println("Running tests on US01");
+        /*System.out.println("Running tests on US01");
         Result result = JUnitCore.runClasses(Test01.class);
         
         for (Failure failure : result.getFailures()) {
@@ -245,7 +245,7 @@ public class Main {
         	 System.out.println("US02 tests passed");
          else
         	 System.out.println("US02 tests failed");
-        
+        */
 
     }
 
