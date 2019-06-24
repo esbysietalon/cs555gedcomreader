@@ -8,10 +8,5 @@ before_install:
   - echo $(ant -version)
 script: 
   - ant build
-  - java Main Eli_GEDCOM.ged
-  - java Main UserStory01.ged
-  - java Main UserStory02.ged
-  - java Main UserStory17.ged
-  - java Main UserStory29.ged
-  - java Main UserStory30.ged
+  - java Main AcceptanceTest.ged
 
