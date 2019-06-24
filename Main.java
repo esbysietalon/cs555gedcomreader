@@ -12,10 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
-
 class USOutput{
     private ArrayList<Individual> indi;
     private ArrayList<Family> fam;
@@ -219,33 +215,6 @@ public class Main {
             System.out.println("There are no living married people");
         }
         //End test usertory 30
-
-        //Tests?
-        System.out.println("Running tests on US01");
-        Result result = JUnitCore.runClasses(Test01.class);
-
-        for (Failure failure : result.getFailures()) {
-            System.out.println(failure.toString());
-         }
-
-         if(result.wasSuccessful())
-        	 System.out.println("US01 tests passed");
-         else
-        	 System.out.println("US01 tests failed");
-
-        System.out.println("Running tests on US02");
-
-        result = JUnitCore.runClasses(Test02.class);
-
-        for (Failure failure : result.getFailures()) {
-            System.out.println(failure.toString());
-         }
-
-         if(result.wasSuccessful())
-        	 System.out.println("US02 tests passed");
-         else
-        	 System.out.println("US02 tests failed");
-        
 
     }
 

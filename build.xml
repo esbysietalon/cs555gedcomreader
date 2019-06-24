@@ -73,7 +73,7 @@
     </target>
 	<target name="junit">
 
-		<junit printsummary="yes" haltonfailure="no">
+		<junit printsummary="on" haltonfailure="no" showoutput="true">
 
 			<!-- Project classpath, must include junit.jar -->
 			<classpath refid="cs555.classpath" />
