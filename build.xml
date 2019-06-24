@@ -73,7 +73,7 @@
     </target>
 	<target name="junit">
 
-		<junit printsummary="on" haltonfailure="no" showoutput="true">
+		<junit printsummary="on" haltonfailure="no" showoutput="true" failureproperty="test.failure">
 
 			<!-- Project classpath, must include junit.jar -->
 			<classpath refid="cs555.classpath" />
@@ -94,6 +94,11 @@
 			</test>
 		
 		</junit>
+	</target>
+	<target name="test" depends="clean, junit, verifyNoFailure"/>
+	<target name="verifyNoFailure" if="test.failure">
+		<echo message="All tests passed."/>
+		<fail message="One of more JUnit tests failed."/>
 	</target>
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
