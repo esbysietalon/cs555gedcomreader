@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class TestFAIL {
+public class Test00 {
 
 	@Test
 	public void Test_FAIL() {
