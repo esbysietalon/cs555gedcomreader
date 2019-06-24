@@ -9,5 +9,6 @@ before_install:
 script: 
   - ant build
   - ant junit
+  - ant testsummary
   - java Main AcceptanceTest.ged
 
