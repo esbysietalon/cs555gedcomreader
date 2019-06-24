@@ -8,6 +8,8 @@ before_install:
   - export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.12.jar:.
   - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
   - echo $(ant -version)
+  - echo $CLASSPATH
+  - echo $JUNIT_HOME
 script: 
   - ant build
   - java Main Eli_GEDCOM.ged
