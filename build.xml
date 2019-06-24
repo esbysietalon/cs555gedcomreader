@@ -73,7 +73,7 @@
     </target>
 	<target name="junit">
 
-		<junit printsummary="on" haltonfailure="no" showoutput="true">
+		<junit printsummary="yes" haltonfailure="no" showoutput="true" failureproperty="test.failure">
 
 			<!-- Project classpath, must include junit.jar -->
 			<classpath refid="cs555.classpath" />
@@ -81,7 +81,12 @@
 			<!-- test class -->
 			<classpath location="${test.classes.dir}" />
 		
-			<test name="Test01" 
+			<batchtest fork="yes" todir="${test.classes.dir}">
+				<fileset dir="${test.classes.dir}">
+					<include name="Test*.java"/>
+				</fileset>
+			</batchtest>
+			<!--<test name="Test01" 
 				haltonfailure="no" todir="${report.dir}" failureproperty="test.failure">
 				<formatter type="plain" />
 				<formatter type="xml" />
@@ -91,7 +96,7 @@
 				haltonfailure="no" todir="${report.dir}" failureproperty="test.failure">
 				<formatter type="plain" />
 				<formatter type="xml" />
-			</test>
+			</test>-->
 		</junit>
 		<fail message="One or more JUnit tests failed." if="test.failure"/>
 	</target>
