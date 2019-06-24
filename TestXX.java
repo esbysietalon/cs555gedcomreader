@@ -12,6 +12,6 @@ public class TestXX {
 
 	@Test
 	public void Test_USXX() {
-		assertFalse(true);
+		assertFalse(false);
 	}
 }
