@@ -12,6 +12,7 @@ before_install:
   - echo $JUNIT_HOME
 script: 
   - ant build
+  - java org.junit.runner.JUnitCore org.junit.tests.AllTests
   - java Main Eli_GEDCOM.ged
   - java Main UserStory01.ged
   - java Main UserStory02.ged
