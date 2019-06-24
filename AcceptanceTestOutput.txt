@@ -1,0 +1,44 @@
+Individuals
+   ID             Name             Gender     Birthday     Age    Alive      Death       Child     Spouse
+  @I1@        John /Smith/           M       1957-03-10    62     True         NA          NA    [@F1@, @F2@]
+  @I1@    Duplicate /McTestman/      M       2020-03-10     0     True         NA          NA        NA
+  @I2@        Jane /Smith/           F       1960-07-09    38     False    1999-03-27      NA      [@F1@]
+  @I3@      AnnaBelle /Smith/        F       1981-08-06    37     True         NA        [@F1@]    [@F2@]
+
+Families
+   ID      Married      Divorced    Husband ID        Husband Name         Wife ID        Wife Name        Children
+  @F1@    1980-05-26       NA          @I1@       Duplicate /McTestman/     @I2@        Jane /Smith/        [@I3@]
+  @F2@    200-10-03        NA          @I1@       Duplicate /McTestman/     @I3@      AnnaBelle /Smith/       NA
+
+US01: WARNING: The following records contain dates/events that happen in the future
+Individuals
+   ID         Name        Gender     Birthday     Age    Alive    Death    Child       Spouse
+  @I1@    John /Smith/      M       1957-03-10    62     True      NA       NA      [@F1@, @F2@]
+
+US02: WARNING: The following people were married before they were born
+Individuals
+   ID           Name           Gender     Birthday     Age    Alive    Death    Child        Spouse
+  @I1@      John /Smith/         M       1957-03-10    62     True      NA        NA      [@F1@, @F2@]
+  @I3@    AnnaBelle /Smith/      F       1981-08-06    37     True      NA      [@F1@]       [@F2@]
+
+US17: WARNING: The following individuals married one of their own children
+Individuals
+   ID         Name        Gender     Birthday     Age    Alive    Death    Child       Spouse
+  @I1@    John /Smith/      M       1957-03-10    62     True      NA       NA      [@F1@, @F2@]
+
+US22: ERROR: The following individuals have duplicate IDs
+Individuals
+   ID             Name             Gender     Birthday     Age    Alive    Death    Child       Spouse
+  @I1@        John /Smith/           M       1957-03-10    62     True      NA       NA      [@F1@, @F2@]
+  @I1@    Duplicate /McTestman/      M       2020-03-10     0     True      NA       NA           NA
+
+US29: The following individuals are dead:
+Individuals
+   ID         Name        Gender     Birthday     Age    Alive      Death       Child    Spouse
+  @I2@    Jane /Smith/      F       1960-07-09    38     False    1999-03-27     NA      [@F1@]
+
+US30: The following individuals living and married:
+Individuals
+   ID           Name           Gender     Birthday     Age    Alive    Death    Child        Spouse
+  @I1@      John /Smith/         M       1957-03-10    62     True      NA        NA      [@F1@, @F2@]
+  @I3@    AnnaBelle /Smith/      F       1981-08-06    37     True      NA      [@F1@]       [@F2@]
