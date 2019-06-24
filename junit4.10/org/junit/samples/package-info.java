@@ -1,6 +1,4 @@
 /**
- * Provides examples on how to use JUnit 4.
- *
- * @since 4.0
+ * JUnit v3.x examples.
  */
-package org.junit.samples;
+package junit.samples;
