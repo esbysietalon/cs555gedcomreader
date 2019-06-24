@@ -11,7 +11,6 @@ before_install:
   - echo $CLASSPATH
 script: 
   - ant build
-  - java -cp /home/travis/build/talonjoaquin/cs555gedcomreader/junit4.10 org.junit.runner.JUnitCore org.junit.tests.AllTests
   - java Main Eli_GEDCOM.ged
   - java Main UserStory01.ged
   - java Main UserStory02.ged
