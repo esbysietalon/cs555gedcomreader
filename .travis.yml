@@ -6,6 +6,7 @@ before_install:
   - tar -xzvf apache-ant-1.10.6-bin.tar.gz
   - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
   - echo $(ant -version)
+  - echo `pwd`
 script: 
   - ant build
   - java -cp /home/travis/build/talonjoaquin/cs555gedcomreader/junit4.10 org.junit.runner.JUnitCore org.junit.tests.AllTests
