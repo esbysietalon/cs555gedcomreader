@@ -99,9 +99,7 @@
 				<formatter type="xml" />
 			</test>
 		</junit>
-	</target>
-	<target name="testsummary" if="test.failure">
-		<fail message="One or more JUnit tests failed"/>
+		<fail message="One or more JUnit tests failed." if="test.failure"/>
 	</target>
 	<target name="junitreport">
         <junitreport todir="${junit.output.dir}">
