@@ -8,6 +8,6 @@ before_install:
   - echo $(ant -version)
 script: 
   - ant build
-  - ant junit
+  - ant test
   - java Main AcceptanceTest.ged
 
