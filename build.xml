@@ -71,7 +71,7 @@
             <classpath refid="cs555.classpath"/>
         </junit>
     </target>
-	<target name="junit" depends="compile">
+	<target name="junit">
 
 		<junit printsummary="yes" haltonfailure="no">
 
