@@ -8,10 +8,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Test01 {
+public class TestFAIL {
 
 	@Test
-	public void Test_US01() {
+	public void Test_FAIL() {
 		assertTrue(false);
 	}
 }
