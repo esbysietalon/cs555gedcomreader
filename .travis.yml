@@ -5,8 +5,10 @@ before_install:
   - wget --no-check-certificate http://apache.claz.org//ant/binaries/apache-ant-1.10.6-bin.tar.gz
   - tar -xzvf apache-ant-1.10.6-bin.tar.gz
   - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
+  - export JUNIT_HOME=`pwd`/junit4.10
+  - export CLASSPATH=$CLASSPATH:$JUNIT_HOME/:.
   - echo $(ant -version)
-  - echo `pwd`
+  - echo $CLASSPATH
 script: 
   - ant build
   - java -cp /home/travis/build/talonjoaquin/cs555gedcomreader/junit4.10 org.junit.runner.JUnitCore org.junit.tests.AllTests
