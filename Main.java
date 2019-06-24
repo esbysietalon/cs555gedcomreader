@@ -12,9 +12,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-/*import org.junit.runner.JUnitCore;
+import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;*/
+import org.junit.runner.notification.Failure;
 
 class USOutput{
     private ArrayList<Individual> indi;
