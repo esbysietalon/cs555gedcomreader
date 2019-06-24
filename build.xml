@@ -9,7 +9,9 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="cs555.classpath">
+    <property name="report.dir" value="."/>
+	<property name="test.classes.dir" value="."/>
+	<path id="cs555.classpath">
         <pathelement location="."/>
 		<pathelement location="junit4.10"/>
         <pathelement location="junit4.10/junit-4.10.jar"/>
@@ -69,6 +71,24 @@
             <classpath refid="cs555.classpath"/>
         </junit>
     </target>
+	<target name="junit" depends="compile">
+
+		<junit printsummary="yes" haltonfailure="no">
+
+			<!-- Project classpath, must include junit.jar -->
+			<classpath refid="cs555.classpath" />
+		
+			<!-- test class -->
+			<classpath location="${test.classes.dir}" />
+		
+			<test name="Test01" 
+				haltonfailure="no" todir="${report.dir}">
+				<formatter type="plain" />
+				<formatter type="xml" />
+			</test>
+		
+		</junit>
+	</target>
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
