@@ -12,7 +12,7 @@ before_install:
   - echo $JUNIT_HOME
 script: 
   - ant build
-  - java -cp `pwd`/junit4.10 org.junit.runner.JUnitCore org.junit.tests.AllTests
+  - java -cp /home/travis/build/talonjoaquin/cs555gedcomreader/junit4.10 org.junit.runner.JUnitCore org.junit.tests.AllTests
   - java Main Eli_GEDCOM.ged
   - java Main UserStory01.ged
   - java Main UserStory02.ged
