@@ -5,11 +5,9 @@ before_install:
   - wget --no-check-certificate http://apache.claz.org//ant/binaries/apache-ant-1.10.6-bin.tar.gz
   - tar -xzvf apache-ant-1.10.6-bin.tar.gz
   - export PATH=`pwd`/apache-ant-1.10.6/bin:$PATH
+  - export JUNIT_HOME=`pwd`/junit4.10/
+  - export CLASSPATH=$CLASSPATH:$JUNIT_HOME/junit4.12.jar:.
   - echo $(ant -version)
-env:
-  global:
-    - JUNIT_HOME = `pwd`/junit4.10/
-    - CLASSPATH = $CLASSPATH:$JUNIT_HOME/junit4.12.jar:.
 script: 
   - ant build
   - java Main Eli_GEDCOM.ged
