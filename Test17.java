@@ -21,6 +21,7 @@ public class Test17 {
 		boolean creep = true;
 
 		for (Individual individual : uso) {
+			creep = false;
 			ArrayList<String> spouseIDs = new ArrayList<>();
 			for (String FAMS : individual.getFAMSs()) {
 				for(Family family: main.getFamilies()) {
@@ -35,9 +36,9 @@ public class Test17 {
 				}
 			}
 			for (String FAMS : individual.getFAMSs()) {
-				creep = false;
+
 				for (Family family : main.getFamilies()) {
-					
+
 					if(FAMS.equals(family.getId())) {
 						if(!Collections.disjoint(family.getChildrenIds(), spouseIDs)) {
 							creep = true;
