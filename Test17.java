@@ -19,6 +19,7 @@ public class Test17 {
 		ArrayList<Individual> uso = US17.findParentsMarriedToChildren(main.getIndividuals(), main.getFamilies());
 
 		boolean creep = true;
+
 		for (Individual individual : uso) {
 			ArrayList<String> spouseIDs = new ArrayList<>();
 			for (String FAMS : individual.getFAMSs()) {
@@ -35,9 +36,10 @@ public class Test17 {
 			}
 			for (String FAMS : individual.getFAMSs()) {
 				for (Family family : main.getFamilies()) {
+					creep = false;
 					if(FAMS.equals(family.getId())) {
-						if(Collections.disjoint(family.getChildrenIds(), spouseIDs)) {
-							creep = false;
+						if(!Collections.disjoint(family.getChildrenIds(), spouseIDs)) {
+							creep = true;
 						}
 					}
 				}
