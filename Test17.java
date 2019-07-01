@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.*;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -21,7 +22,7 @@ public class Test17 {
 		for (Individual individual : uso) {
 			ArrayList<String> spouseIDs = new ArrayList<>();
 			for (String FAMS : individual.getFAMSs()) {
-				for(Family family: families) {
+				for(Family family: main.getFamilies()) {
 					if(FAMS.equals(family.getId())) {
 						if(individual.getId().equals(family.getHusbandId())) {
 							spouseIDs.add(family.getWifeId());
@@ -33,7 +34,7 @@ public class Test17 {
 				}
 			}
 			for (String FAMS : individual.getFAMSs()) {
-				for (Family family : families) {
+				for (Family family : main.getFamilies()) {
 					if(FAMS.equals(family.getId())) {
 						if(Collections.disjoint(family.getChildrenIds(), spouseIDs)) {
 							creep = false;

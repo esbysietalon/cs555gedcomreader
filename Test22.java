@@ -16,11 +16,11 @@ public class Test22{
 
 		for(int i = 0; i < uso.size(); i++){
 			int idCount = 0;
-			for(int j = 0; j < main.getIndividuals(); j++){
+			for(int j = 0; j < main.getIndividuals().size(); j++){
 				if(uso.at(i).getId().equals(main.getIndividuals().at(j).getId()))
 					idCount++;
 			}
-			for(int j = 0; j < main.getFamilies(); j++){
+			for(int j = 0; j < main.getFamilies().size(); j++){
 				if(uso.at(i).getId().equals(main.getFamilies().at(j).getId()))
 					idCount++;
 			}
