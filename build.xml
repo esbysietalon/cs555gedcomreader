@@ -9,7 +9,9 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="cs555.classpath">
+    <property name="report.dir" value="."/>
+	<property name="test.classes.dir" value="."/>
+	<path id="cs555.classpath">
         <pathelement location="."/>
 		<pathelement location="junit4.10"/>
         <pathelement location="junit4.10/junit-4.10.jar"/>
@@ -69,7 +71,36 @@
             <classpath refid="cs555.classpath"/>
         </junit>
     </target>
-    <target name="junitreport">
+	<target name="junit">
+
+		<junit printsummary="yes" haltonfailure="no" showoutput="true" failureproperty="test.failure">
+
+			<!-- Project classpath, must include junit.jar -->
+			<classpath refid="cs555.classpath" />
+		
+			<!-- test class -->
+			<classpath location="${test.classes.dir}" />
+		
+			<batchtest fork="yes" todir="${test.classes.dir}">
+				<fileset dir="${test.classes.dir}">
+					<include name="Test*.java"/>
+				</fileset>
+			</batchtest>
+			<!--<test name="Test01" 
+				haltonfailure="no" todir="${report.dir}" failureproperty="test.failure">
+				<formatter type="plain" />
+				<formatter type="xml" />
+			</test>
+			
+			<test name="Test02" 
+				haltonfailure="no" todir="${report.dir}" failureproperty="test.failure">
+				<formatter type="plain" />
+				<formatter type="xml" />
+			</test>-->
+		</junit>
+		<fail message="One or more JUnit tests failed." if="test.failure"/>
+	</target>
+	<target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
