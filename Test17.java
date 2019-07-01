@@ -35,8 +35,9 @@ public class Test17 {
 				}
 			}
 			for (String FAMS : individual.getFAMSs()) {
+				creep = false;
 				for (Family family : main.getFamilies()) {
-					creep = false;
+					
 					if(FAMS.equals(family.getId())) {
 						if(!Collections.disjoint(family.getChildrenIds(), spouseIDs)) {
 							creep = true;
