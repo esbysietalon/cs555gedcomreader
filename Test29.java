@@ -17,8 +17,12 @@ public class Test29{
 
     ArrayList<Individual> deadPeople = US29.listDeceased(main.getIndividuals());
     ArrayList<String> required = new ArrayList<String>();
-    required.add("test");
-    required.add("test2");
+    required.add("@I13@");
+    required.add("@I14@");
+    required.add("@I16@");
+    required.add("@I5@");
+    required.add("@I8@");
+
 
     main.compareIDs(deadPeople, required);
 
