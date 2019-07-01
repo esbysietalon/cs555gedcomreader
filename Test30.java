@@ -16,7 +16,7 @@ public class Test30{
     Main main = new Main();
 		main.readData("UserStory30.ged");
 
-    ArrayList<Individual> deadPeople = US30.listLivingMarried(main.getIndividuals());
+    ArrayList<Individual> deadPeople = US30.listLivingMarried(main.getIndividuals(), main.getFamilies());
     ArrayList<String> required = new ArrayList<String>();
     required.add("@I2@");
     required.add("@I3@");
