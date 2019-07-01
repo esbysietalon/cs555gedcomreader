@@ -12,6 +12,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 class USOutput{
     private ArrayList<Individual> indi;
     private ArrayList<Family> fam;
@@ -653,6 +663,16 @@ public class Main {
                 parsedTags.add(newtag);
             }
         }
+    }
+
+    public void compareIDs(ArrayList<Individual> result, ArrayList<String> required){
+      ArrayList<String> compare = new ArrayList<String>();
+      String currID;
+      for(GedcomObject x: result){
+        compare.add(x.getId());
+      }
+
+      assertEquals(compare, required);
     }
 
 
