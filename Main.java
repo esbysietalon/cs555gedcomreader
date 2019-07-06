@@ -257,7 +257,8 @@ public class Main {
             System.out.println(output + msg);
             if(USOutput.getIndi().size() > 0){
                 printPeople(USOutput.getIndi());
-            }else if(USOutput.getFam().size() > 0){
+            }
+            if(USOutput.getFam().size() > 0){
                 printFamilies(USOutput.getFam());
             }
         }else{
