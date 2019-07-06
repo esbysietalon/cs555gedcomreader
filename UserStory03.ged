@@ -10,7 +10,7 @@
 1 FAMS @F1@
 1 FAMS @F2@
 0 @I2@ INDI
-1 NAME Jane /FutureSmith/
+1 NAME Jane /DeadBeforeBornSmith/
 1 SEX F
 1 BIRT
 2 DATE 9 JUL 1960
@@ -18,14 +18,14 @@
 2 DATE 27 MAR 1960
 1 FAMS @F1@
 0 @I3@ INDI
-1 NAME AnnaBelle /FutureSmith/
+1 NAME AnnaBelle /DeadBeforeBornSmith/
 1 SEX F
 1 BIRT
 2 DATE 6 AUG 1981
 1 FAMC @F1@
 1 FAMS @F2@
 0 @I4@ INDI
-1 NAME Jamie /FutureSmith/
+1 NAME Jamie /DeadBeforeBornSmith/
 1 SEX F
 1 BIRT
 2 DATE 20 JUN 2018
