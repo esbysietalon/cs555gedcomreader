@@ -6,7 +6,7 @@ public class US04 {
         ArrayList<Family> uDF = new ArrayList<Family>();
         for(Family f : families){
             if(!f.getDivorceDate().equals("NA")){
-                if(Main.getDateDistance(f.getMarriageDate(), f.getDivorceDate()) < 0){
+                if(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(f.getDivorceDate())) < 0){
                     uDF.add(f);
                     Individual hub = (Individual)Main.getById(f.getHusbandId());
                     Individual wif = (Individual)Main.getById(f.getWifeId());

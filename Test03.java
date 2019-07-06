@@ -1,21 +1,10 @@
 import org.junit.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class Test03 {
         @Test
@@ -31,9 +20,9 @@ public class Test03 {
             for(Individual i : allI) {
                 if (usoI.contains(i)) {
                     assertFalse(i.getDeathDate().equals("NA"));
-                    assertTrue(Main.getDateDistance(i.getBirthDate(), i.getDeathDate()) < 0);
+                    assertTrue(Main.getDateDistance(Main.convertDateYMD(i.getBirthDate()), Main.convertDateYMD(i.getDeathDate())) < 0);
                 }else{
-                    assertTrue(i.getDeathDate().equals("NA") || Main.getDateDistance(i.getBirthDate(), i.getDeathDate()) < 0);
+                    assertTrue(i.getDeathDate().equals("NA") || Main.getDateDistance(Main.convertDateYMD(i.getBirthDate()), Main.convertDateYMD(i.getDeathDate())) >= 0);
                 }
             }
 

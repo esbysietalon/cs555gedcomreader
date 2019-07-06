@@ -5,7 +5,7 @@ public class US03 {
         ArrayList<Individual> uD = new ArrayList<Individual>();
         for(Individual i : individuals){
             if(!i.getDeathDate().equals("NA")){
-                if(Main.getDateDistance(i.getBirthDate(), i.getDeathDate()) < 0){
+                if(Main.getDateDistance(Main.convertDateYMD(i.getBirthDate()), Main.convertDateYMD(i.getDeathDate())) < 0){
                     uD.add(i);
                 }
             }
