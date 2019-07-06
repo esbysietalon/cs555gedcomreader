@@ -150,6 +150,16 @@ public class Main {
         System.out.print("US02: ");
         USOutput invalidMarriages = US02.unbornMarriage(families);
         printUSOutput(1, "The following people were married before they were born", invalidMarriages);
+
+        //US03
+        System.out.print("US03: ");
+        USOutput unbornDead = US03.unbornDead(individuals);
+        printUSOutput(1, "The following people died before they were born", unbornDead);
+
+        //US04
+        System.out.print("US04: ");
+        USOutput unmarriedDivorce = US04.unmarriedDivorce(families);
+        printUSOutput(1, "The following people divorced before they were married in the following families", unmarriedDivorce);
         //etc.
 
         //US17
