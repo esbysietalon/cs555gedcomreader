@@ -172,14 +172,23 @@ public class Main {
             System.out.println("No Problems");
         }
         //US18
-        // System.out.print("US18: ");
-        // ArrayList<Family> incestousFamilies = US18.checkIncest(families);
-        // if (incestousFamilies.size() > 0) {
-        //     System.out.println("WARNING: The following families have married siblings");
-        //     printFamilies(incestousFamilies);
-        // } else {
-        //     System.out.println("No Problems");
-        // }
+        System.out.print("US18: ");
+        ArrayList<Family> incestousFamilies = US18.checkIncest(families);
+        if (incestousFamilies.size() > 0) {
+            System.out.println("WARNING: The following families have married siblings");
+            printFamilies(incestousFamilies);
+        } else {
+            System.out.println("No Problems");
+        }
+        //US21
+        System.out.print("US21: ");
+        ArrayList<Family> anomalousFamilies = US21.correctGenderForRole(families, individuals);
+        if (anomalousFamilies.size() > 0) {
+            System.out.println("ERROR: The following families have spouses labeled with the wrong gender");
+            printFamilies(anomalousFamilies);
+        } else {
+            System.out.println("No Problems");
+        }
         //US22
         System.out.print("US22: ");
         ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
