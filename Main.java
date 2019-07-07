@@ -22,6 +22,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
+
+
+
 class USOutput{
     private ArrayList<Individual> indi;
     private ArrayList<Family> fam;
@@ -162,6 +166,16 @@ public class Main {
         printUSOutput(1, "The following people divorced before they were married in the following families", unmarriedDivorce);
         //etc.
 
+        //US12
+        System.out.print("US12: ");
+        ArrayList<Individual> oldParents = US12.parentsTooOld(individuals, families);
+        if (oldParents.size() > 0) {
+            System.out.println("The following individuals have a parent that is significantly older than them:");
+            printPeople(oldParents);
+        } else {
+            System.out.println("No Problems");
+        }
+
         //US17
         System.out.print("US17: ");
         ArrayList<Individual> creeps = US17.findParentsMarriedToChildren(individuals, families);
@@ -244,6 +258,7 @@ public class Main {
             System.out.println("There are no living married people");
         }
         //End test usertory 30
+
 
     }
 
