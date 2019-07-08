@@ -14,7 +14,7 @@ public class US18 {
                 spouses.add(families.get(j).getHusbandId());
                 spouses.add(families.get(j).getWifeId());
                 if(families.get(i).getChildrenIds().containsAll(spouses)) {
-                    incestousFamilies.add(families.get(i));
+                    incestousFamilies.add(families.get(j));
                 }
                 spouses.clear();
             }
