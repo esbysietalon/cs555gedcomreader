@@ -43,7 +43,7 @@ public class Individual extends GedcomObject{
     public void setName(String name){
         this.name = name.trim();
     }
-    
+
     /**
      * @return "M" or "F" representing the individual's sex
      */
@@ -82,7 +82,7 @@ public class Individual extends GedcomObject{
     public void setDeathDate(String deathDate){
         this.deathDate = deathDate.trim();
     }
-    
+
     /**
      * @return The IDs of all Families that contains this Individual as a child
      */
@@ -98,9 +98,9 @@ public class Individual extends GedcomObject{
     }
 
     /**
-     * Calculates the age of the Individual in years. 
+     * Calculates the age of the Individual in years.
      * If the Individual is deceased, the age is calculated based on date of death, otherwise it is based on the current date
-     * @return age in years 
+     * @return age in years
      */
     public int getAge(){
 
@@ -142,6 +142,71 @@ public class Individual extends GedcomObject{
         return age;
     }
 
+
+    /**
+     * Calculates the age of the Individual in days.
+     * If the Individual is deceased, the age is calculated based on date of death, otherwise it is based on the current date
+     * @return age in years
+     */
+    public int getAgeInDays(){
+
+
+      String newDate = Main.convertDateYMD(birthDate);
+      String[] thendate = newDate.split("-", -1);
+      int thenyear = Integer.parseInt(thendate[0]);
+      int thenmonth = Integer.parseInt(thendate[1]);
+      int thenday = Integer.parseInt(thendate[2]);
+
+      //Calculate total amount of days from year 0 to individuals birthdate;
+      int thenDays = thenday + (thenmonth * 30) + (thenyear * 365);
+
+
+      int nowyear;
+      int nowmonth;
+      int nowday;
+      String nowDate;
+      if(isAlive()) {
+          DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+          Date date = new Date();
+          nowDate = dateFormat.format(date);
+          String[] nowdate = nowDate.split("-", -1);
+          nowyear = Integer.parseInt(nowdate[0]);
+          nowmonth = Integer.parseInt(nowdate[1]);
+          nowday = Integer.parseInt(nowdate[2]);
+      }else{
+          nowDate = Main.convertDateYMD(deathDate);
+          String[] nowdate = nowDate.split("-", -1);
+          nowyear = Integer.parseInt(nowdate[0]);
+          nowmonth = Integer.parseInt(nowdate[1]);
+          nowday = Integer.parseInt(nowdate[2]);
+      }
+
+      //Calculate total amount of days from year 0 to now or deathdate;
+      int nowDays = nowday + (nowmonth * 30) + (nowyear * 365);
+
+      //Calculate total days person has lived
+      int ageDays = nowDays - thenDays;
+
+      return ageDays;
+
+    }
+
+    //Returns an ArrayList of the sibilings of
+    public ArrayList<Individual> getSiblings(){
+      ArrayList<String> fams = getFAMCs();
+      ArrayList<Individual> siblings = new ArrayList<>();
+      for(String famID : fams){
+        Family f = (Family) Main.getById(famID);
+        ArrayList<String> sibIDs = f.getChildrenIds();
+        for(String sibID : sibIDs){
+          if(!Main.getById(sibID).equals(this)){
+            siblings.add((Individual)Main.getById(sibID));
+          }
+        }
+      }
+      return siblings;
+    }
+
     /**
      * Is the Individual alive?
      * @return true if there is no Death Date
@@ -152,7 +217,7 @@ public class Individual extends GedcomObject{
 
     /**
      * Creates Individual based on input
-     * 
+     *
      * @param id Id read directly from GEDCOM file
      * @param name Name of individual
      * @param sex "M" or "F" representing the individual's sex
@@ -170,7 +235,7 @@ public class Individual extends GedcomObject{
       this.FAMCs = FAMCs;
       this.FAMSs = FAMSs;
     }
-    
+
     /**
      * Returns a string representation of the Individual
      * @return id, name, sex, birthDate, deathDate, FAMCs, and FAMSs separated by tabs
