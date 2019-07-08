@@ -10,7 +10,7 @@ public class US18 {
         ArrayList<Family> incestousFamilies = new ArrayList<>();
         ArrayList<String> spouses = new ArrayList<>();
         for(int i = 0 ; i < families.size(); i++) {
-            for(int j = 0; j < families.size() && j!=i; j++) {
+            for(int j = 0; j < families.size(); j++) {
                 spouses.add(families.get(j).getHusbandId());
                 spouses.add(families.get(j).getWifeId());
                 if(families.get(i).getChildrenIds().containsAll(spouses)) {

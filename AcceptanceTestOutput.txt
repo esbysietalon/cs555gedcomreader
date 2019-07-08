@@ -73,7 +73,11 @@ Individuals
     @I1@      John /Smith/      M       1957-03-10    62     True      NA       NA          [@F1@, @F2@]      
   @US21I1@    John /Smith/      M       1957-03-10    62     True      NA       NA      [@US21F1@, @US21F2@]  
 
-US18: No Problems
+US18: WARNING: The following families have married siblings
+Families
+     ID        Married       Divorced     Husband ID             Husband Name             Wife ID         Wife Name              Children        
+@US18F1@    2019-06-22       NA        @US04I1@     John /DivorcedBeforeMarried/    @US04I5@    Gerald /DivorcedBeforeMarried/       NA       
+
 US21: ERROR: The following families have spouses labeled with the wrong gender
 Families
      ID        Married      Divorced    Husband ID            Husband Name            Wife ID               Wife Name               Children  
