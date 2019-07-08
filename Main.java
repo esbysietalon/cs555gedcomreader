@@ -168,10 +168,20 @@ public class Main {
 
         //US12
         System.out.print("US12: ");
-        ArrayList<Individual> oldParents = US12.parentsTooOld(individuals, families);
+        ArrayList<Individual> oldParents = US12.parentsTooOld(individuals);
         if (oldParents.size() > 0) {
             System.out.println("The following individuals have a parent that is significantly older than them:");
             printPeople(oldParents);
+        } else {
+            System.out.println("No Problems");
+        }
+
+        //US13
+        System.out.print("US13: ");
+        ArrayList<Individual> closeSiblings = US13.siblingsTooClose(individuals);
+        if (closeSiblings.size() > 0) {
+            System.out.println("The following individuals have a sibling that was born too close to them:");
+            printPeople(closeSiblings);
         } else {
             System.out.println("No Problems");
         }

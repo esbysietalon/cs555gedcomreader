@@ -191,6 +191,22 @@ public class Individual extends GedcomObject{
 
     }
 
+    //Returns an ArrayList of the sibilings of
+    public ArrayList<Individual> getSiblings(){
+      ArrayList<String> fams = getFAMCs();
+      ArrayList<Individual> siblings = new ArrayList<>();
+      for(String famID : fams){
+        Family f = (Family) Main.getById(famID);
+        ArrayList<String> sibIDs = f.getChildrenIds();
+        for(String sibID : sibIDs){
+          if(!Main.getById(sibID).equals(this)){
+            siblings.add((Individual)Main.getById(sibID));
+          }
+        }
+      }
+      return siblings;
+    }
+
     /**
      * Is the Individual alive?
      * @return true if there is no Death Date

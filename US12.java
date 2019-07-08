@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class US12 {
-  public static ArrayList<Individual> parentsTooOld(ArrayList<Individual> individuals, ArrayList<Family> families){
+  public static ArrayList<Individual> parentsTooOld(ArrayList<Individual> individuals){
     ArrayList<Individual> oldParents = new ArrayList<>();
     Individual father;
     Individual mother;
