@@ -166,6 +166,10 @@ public class Main {
         printUSOutput(1, "The following people divorced before they were married in the following families", unmarriedDivorce);
         //etc.
 
+        //US09
+        
+        //US10
+        
         //US12
         System.out.print("US12: ");
         ArrayList<Individual> oldParents = US12.parentsTooOld(individuals);
@@ -195,6 +199,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        
         //US18
         System.out.print("US18: ");
         ArrayList<Family> incestousFamilies = US18.checkIncest(families);
@@ -204,6 +209,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        
         //US21
         System.out.print("US21: ");
         ArrayList<Family> anomalousFamilies = US21.correctGenderForRole(families, individuals);
@@ -213,6 +219,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        
         //US22
         System.out.print("US22: ");
         ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
@@ -246,8 +253,7 @@ public class Main {
             System.out.println("No Problems");
         }
 
-
-        //Test Userstory 29
+        //US29
         System.out.print("US29: ");
         ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
         if (deadPeople.size() > 0) {
@@ -256,9 +262,8 @@ public class Main {
         } else {
             System.out.println("No one is dead.");
         }
-        //End test usertory 29
 
-        //Test Userstory 30
+        //US30
         System.out.print("US30: ");
         ArrayList<Individual> livingMarried = US30.listLivingMarried(individuals, families);
         if (livingMarried.size() > 0) {
@@ -267,8 +272,7 @@ public class Main {
         } else {
             System.out.println("There are no living married people");
         }
-        //End test usertory 30
-
+        
 
     }
 
