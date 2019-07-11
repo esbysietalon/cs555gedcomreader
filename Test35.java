@@ -21,7 +21,7 @@ public class Test35{
     required.add("@I13@");
 
 
-    main.compareIDs(deadPeople, required);
+    main.compareIDs(recentDeadPeople, required);
 
   }
 
