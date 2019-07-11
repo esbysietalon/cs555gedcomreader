@@ -275,7 +275,17 @@ public class Main {
 
         //US35
         System.out.print("US35: ");
-        ArrayList<Individual> recentDeaths = US35.listRecentDeceased(individuals);
+        ArrayList<Individual> recentBirths = US35.listRecentBirths(individuals);
+        if (recentBirths.size() > 0) {
+            System.out.println("The following individuals were born in the last 30 days:");
+            printPeople(recentBirths);
+        } else {
+            System.out.println("No Prolems");
+        }
+
+        //US36
+        System.out.print("US36: ");
+        ArrayList<Individual> recentDeaths = US36.listRecentDeceased(individuals);
         if (recentDeaths.size() > 0) {
             System.out.println("The following individuals died in the last 30 days:");
             printPeople(recentDeaths);
