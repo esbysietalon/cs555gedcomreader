@@ -167,9 +167,9 @@ public class Main {
         //etc.
 
         //US09
-        
+
         //US10
-        
+
         //US12
         System.out.print("US12: ");
         ArrayList<Individual> oldParents = US12.parentsTooOld(individuals);
@@ -199,7 +199,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-        
+
         //US18
         System.out.print("US18: ");
         ArrayList<Family> incestousFamilies = US18.checkIncest(families);
@@ -209,7 +209,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-        
+
         //US21
         System.out.print("US21: ");
         ArrayList<Family> anomalousFamilies = US21.correctGenderForRole(families, individuals);
@@ -219,7 +219,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-        
+
         //US22
         System.out.print("US22: ");
         ArrayList<GedcomObject> duplicates = US22.uniqueIDs(new ArrayList<>(individuals));
@@ -272,7 +272,17 @@ public class Main {
         } else {
             System.out.println("There are no living married people");
         }
-        
+
+        //US35
+        System.out.print("US35: ");
+        ArrayList<Individual> recentDeaths = US35.listRecentDeceased(individuals);
+        if (recentDeaths.size() > 0) {
+            System.out.println("The following individuals died in the last 30 days:");
+            printPeople(recentDeaths);
+        } else {
+            System.out.println("No Prolems");
+        }
+
 
     }
 

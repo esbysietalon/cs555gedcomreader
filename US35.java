@@ -1,4 +1,6 @@
 import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class US35 {
 
@@ -13,8 +15,8 @@ public class US35 {
     return recentDeadPeople;
   }
 
-  private boolean isRecentDeath(Individual i){
-    String newDate = Main.convertDateYMD(i.birthDate);
+  private static boolean isRecentDeath(Individual i){
+    String newDate = Main.convertDateYMD(i.getDeathDate());
     String[] diedate = newDate.split("-", -1);
     int dieyear = Integer.parseInt(diedate[0]);
     int diemonth = Integer.parseInt(diedate[1]);
