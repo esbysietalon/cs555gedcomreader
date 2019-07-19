@@ -164,6 +164,17 @@ public class Main {
         System.out.print("US04: ");
         USOutput unmarriedDivorce = US04.unmarriedDivorce(families);
         printUSOutput(1, "The following people divorced before they were married in the following families", unmarriedDivorce);
+
+        //US05
+        System.out.print("US05: ");
+        USOutput deadMarriage = US05.deadMarriage(families);
+        printUSOutput(1, "The following people were either married after they died or married dead people", deadMarriage);
+
+        //US06
+        System.out.print("US06: ");
+        USOutput deadDivorce = US06.deadDivorce(families);
+        printUSOutput(1, "The following people were either divorced after they died or divorced dead people", deadDivorce);
+
         //etc.
 
         //US09
@@ -292,6 +303,7 @@ public class Main {
         } else {
             System.out.println("No Prolems");
         }
+
 
 
     }
