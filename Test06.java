@@ -17,13 +17,13 @@ public class Test06 {
             Individual hub = (Individual) Main.getById(f.getHusbandId());
             Individual wif = (Individual) Main.getById(f.getWifeId());
 
-            if(uso.getIndi().contains(hub)){
+            if(uso.getIndi().contains(hub) && !hub.getDeathDate().equals("NA")){
                 assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
             }else{
                 assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
             }
 
-            if(uso.getIndi().contains(wif)){
+            if(uso.getIndi().contains(wif) && !wif.getDeathDate().equals("NA")){
                 assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
             }else{
                 assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
