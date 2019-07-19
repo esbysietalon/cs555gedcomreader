@@ -168,12 +168,12 @@ public class Main {
         //US05
         System.out.print("US05: ");
         USOutput deadMarriage = US05.deadMarriage(families);
-        printUSOutput(1, "The following people were either married after they died or married dead people", deadMarriage);
+        printUSOutput(1, "The following people got married after they died", deadMarriage);
 
         //US06
         System.out.print("US06: ");
         USOutput deadDivorce = US06.deadDivorce(families);
-        printUSOutput(1, "The following people were either divorced after they died or divorced dead people", deadDivorce);
+        printUSOutput(1, "The following people got divorced after they died", deadDivorce);
 
         //etc.
 
