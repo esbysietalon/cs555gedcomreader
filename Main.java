@@ -746,14 +746,20 @@ public class Main {
         }
     }
 
-    public void compareIDs(ArrayList<Individual> result, ArrayList<String> required){
-      ArrayList<String> compare = new ArrayList<String>();
-      String currID;
-      for(GedcomObject x: result){
-        compare.add(x.getId());
-      }
-
-      assertEquals(compare, required);
+    public boolean compareIDs(ArrayList<Individual> result, ArrayList<String> required){
+        for(String id : required){
+            boolean match = false;
+            for(Individual indi : result){
+                if(id.equals(indi.getId())){
+                    match = true;
+                    break;
+                }
+            }
+            if(!match){
+                return false;
+            }
+        }
+        return true;
     }
 
 

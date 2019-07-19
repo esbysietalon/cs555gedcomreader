@@ -21,7 +21,7 @@ public class Test36{
     required.add("@I8@");
 
 
-    main.compareIDs(recentDeadPeople, required);
+    assertTrue(main.compareIDs(recentDeadPeople, required));
 
   }
 
