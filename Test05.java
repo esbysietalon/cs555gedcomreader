@@ -13,19 +13,25 @@ public class Test05 {
 
         USOutput uso = US05.deadMarriage(main.getFamilies());
         for(Family f : main.getFamilies()){
+            if(f.getMarriageDate().equals("-"))
+                continue;
             Individual hub = (Individual) Main.getById(f.getHusbandId());
             Individual wif = (Individual) Main.getById(f.getWifeId());
 
-            if(uso.getIndi().contains(hub) && !hub.getDeathDate().equals("NA")){
-                assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
-            }else{
-                assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
+            if(!hub.getDeathDate().equals("NA")) {
+                if (uso.getIndi().contains(hub)) {
+                    assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
+                } else {
+                    assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(hub.getDeathDate())) < 0);
+                }
             }
 
-            if(uso.getIndi().contains(wif) && !wif.getDeathDate().equals("NA")){
-                assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
-            }else{
-                assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
+            if(!wif.getDeathDate().equals("NA")) {
+                if (uso.getIndi().contains(wif)) {
+                    assertTrue(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
+                } else {
+                    assertFalse(Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate()), Main.convertDateYMD(wif.getDeathDate())) < 0);
+                }
             }
         }
     }

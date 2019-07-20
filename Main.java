@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
-import org.junit.runner.JUnitCore;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -305,14 +304,6 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-
-        System.out.println("Running Tests..");
-        JUnitCore junit = new JUnitCore();
-        System.out.println("Running Test05..");
-        junit.run(Test05.class);
-        System.out.println("Running Test06..");
-        junit.run(Test06.class);
-
     }
 
 
