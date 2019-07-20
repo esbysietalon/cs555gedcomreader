@@ -31,7 +31,7 @@ public class US02{
                 	outputF.add(f);
             }
         }
-        USOutput realOutput = new USOutput(output, outputF);
+        USOutput realOutput = new USOutput(output, new ArrayList<Family>());
         return realOutput;
     }
 }
