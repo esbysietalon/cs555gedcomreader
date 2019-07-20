@@ -24,7 +24,7 @@ public class US05 {
                     }
             }
         }
-        USOutput uso = new USOutput(usI, usF);
+        USOutput uso = new USOutput(usI, new ArrayList<Family>());
         return uso;
     }
 }

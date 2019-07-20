@@ -291,7 +291,7 @@ public class Main {
             System.out.println("The following individuals were born in the last 30 days:");
             printPeople(recentBirths);
         } else {
-            System.out.println("No Prolems");
+            System.out.println("No Problems");
         }
 
         //US36
@@ -301,7 +301,7 @@ public class Main {
             System.out.println("The following individuals died in the last 30 days:");
             printPeople(recentDeaths);
         } else {
-            System.out.println("No Prolems");
+            System.out.println("No Problems");
         }
 
 
