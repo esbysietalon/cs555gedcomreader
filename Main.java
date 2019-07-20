@@ -747,20 +747,13 @@ public class Main {
     }
 
     public void compareIDs(ArrayList<Individual> result, ArrayList<String> required){
-        for(String id : required){
-            boolean match = false;
-            for(Individual indi : result){
-                System.out.println("id: " + id + " " + "indi: " + indi.getId());
-                if(id.equals(indi.getId())){
-                    match = true;
-                    break;
-                }
-            }
-            if(!match){
-                assertTrue(false);
-            }
+        ArrayList<String> compare = new ArrayList<String>();
+        String currID;
+        for(GedcomObject x: result){
+            compare.add(x.getId());
         }
-        assertTrue(true);
+
+        assertEquals(compare, required);
     }
 
 
