@@ -746,20 +746,21 @@ public class Main {
         }
     }
 
-    public boolean compareIDs(ArrayList<Individual> result, ArrayList<String> required){
+    public void compareIDs(ArrayList<Individual> result, ArrayList<String> required){
         for(String id : required){
             boolean match = false;
             for(Individual indi : result){
+                System.out.println("id: " + id + " " + "indi: " + indi.getId());
                 if(id.equals(indi.getId())){
                     match = true;
                     break;
                 }
             }
             if(!match){
-                return false;
+                assertTrue(false);
             }
         }
-        return true;
+        assertTrue(true);
     }
 
 
