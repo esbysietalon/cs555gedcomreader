@@ -182,7 +182,7 @@ public class Main {
         System.out.print("US09: ");
         ArrayList<Individual> bornFromZombies = US09.findZombiePregnancy(individuals, families);
         if (bornFromZombies.size() > 0) {
-            System.out.println("WARING: The following people were concieved or born from dead parents:");
+            System.out.println("ERROR: The following people were concieved or born from dead parents:");
             printPeople(bornFromZombies);
         } else {
             System.out.println("No Problems");

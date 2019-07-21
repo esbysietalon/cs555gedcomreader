@@ -2,7 +2,7 @@ Individuals
      ID                    Name                  Gender     Birthday     Age    Alive      Death         Child              Spouse         
     @I1@               John /Smith/                M       1957-03-10    62     True         NA            NA            [@F1@, @F2@]      
     @I1@           Duplicate /McTestman/           M       2020-03-10     0     True         NA            NA                 NA           
-    @I2@               Jane /Smith/                F       1960-07-09    29     False    1990-06-12        NA               [@F1@]         
+    @I2@               Jane /Smith/                F       1960-07-09    29     False    1990-03-27        NA               [@F1@]         
     @I3@             AnnaBelle /Smith/             F       1981-08-06    37     True         NA          [@F1@]             [@F2@]         
   @US03I1@      John /DeadBeforeBornSmith/         M       1957-03-10    -1     False    1956-03-10        NA        [@US03F1@, @US03F2@]  
   @US03I2@      Jane /DeadBeforeBornSmith/         F       1960-07-09     0     False    1960-03-27        NA             [@US03F1@]       
@@ -78,6 +78,12 @@ Individuals
      ID                 Name              Gender     Birthday     Age    Alive      Death       Child      Spouse    
   @US05I4@    Max /DeadBeforeDivorced/      M       1960-02-04     1     False    1961-04-03     NA      [@US05F2@]  
 
+US09: WARING: The following people were concieved or born from dead parents:
+Individuals
+     ID             Name           Gender     Birthday     Age    Alive    Death      Child       Spouse  
+    @I3@      AnnaBelle /Smith/      F       1981-08-06    37     True      NA        [@F1@]      [@F2@]  
+  @US21I3@    AnnaBelle /Smith/      F       1981-08-06    37     True      NA      [@US21F1@]  [@US21F2@]
+
 US10: WARING: The following individuals have married while under the age of 14:
 Individuals
      ID                  Name                Gender     Birthday     Age    Alive      Death         Child         Spouse    
@@ -122,7 +128,7 @@ Individuals
 US29: The following individuals are dead:
 Individuals
      ID                  Name                Gender     Birthday     Age    Alive      Death       Child      Spouse    
-    @I2@             Jane /Smith/              F       1960-07-09    29     False    1990-06-12     NA        [@F1@]    
+    @I2@             Jane /Smith/              F       1960-07-09    29     False    1990-03-27     NA        [@F1@]    
   @US03I1@    John /DeadBeforeBornSmith/       M       1957-03-10    -1     False    1956-03-10     NA    [@US03F1@, @US03F2@]
   @US03I2@    Jane /DeadBeforeBornSmith/       F       1960-07-09     0     False    1960-03-27     NA      [@US03F1@]  
   @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27     NA      [@US03F1@]  
