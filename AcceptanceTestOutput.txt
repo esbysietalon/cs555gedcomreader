@@ -2,7 +2,7 @@ Individuals
      ID                    Name                  Gender     Birthday     Age    Alive      Death         Child              Spouse         
     @I1@               John /Smith/                M       1957-03-10    62     True         NA            NA            [@F1@, @F2@]      
     @I1@           Duplicate /McTestman/           M       2020-03-10     0     True         NA            NA                 NA           
-    @I2@               Jane /Smith/                F       1960-07-09    38     False    1999-03-27        NA               [@F1@]         
+    @I2@               Jane /Smith/                F       1960-07-09    29     False    1990-06-12        NA               [@F1@]         
     @I3@             AnnaBelle /Smith/             F       1981-08-06    37     True         NA          [@F1@]             [@F2@]         
   @US03I1@      John /DeadBeforeBornSmith/         M       1957-03-10    -1     False    1956-03-10        NA        [@US03F1@, @US03F2@]  
   @US03I2@      Jane /DeadBeforeBornSmith/         F       1960-07-09     0     False    1960-03-27        NA             [@US03F1@]       
@@ -11,25 +11,33 @@ Individuals
   @US04I1@     John /DivorcedBeforeMarried/        M       1957-03-02    62     True         NA        [@US04F2@]    [@US04F1@, @US18F1@]  
   @US04I2@            Mary /Divorced/              F       1952-05-02    67     True         NA            NA             [@US04F1@]       
   @US04I3@    Joshua /DivorcedBeforeMarried/       M       1921-08-02    97     True         NA            NA             [@US04F2@]       
-  @US04I4@           Jessica /Married/             F       1924-02-02    95     True         NA            NA             [@US04F2@]       
-  @US04I5@    Gerald /DivorcedBeforeMarried/       M       1958-11-14    60     True         NA        [@US04F2@]    [@US04F3@, @US18F1@]  
+  @US04I4@           Jessica /Married/             F       1874-02-02    145    True         NA            NA             [@US04F2@]       
+  @US04I5@    Gerald /DivorcedBeforeMarried/       M       1957-06-14    62     True         NA        [@US04F2@]    [@US04F3@, @US18F1@]  
   @US04I6@        Stephanie /Irrelevant/           F       1957-07-28    61     True         NA            NA             [@US04F3@]       
+  @US05I1@       Josh /DeadBeforeMarried/          M       1940-01-02     0     False    1940-01-03        NA             [@US05F1@]       
+  @US05I2@           Jane /Irrelevant/             F       1940-03-02    79     True         NA            NA             [@US05F1@]       
+  @US05I3@       Aidra /DeadBeforeMarried/         F       1965-04-06    54     True         NA        [@US05F1@]         [@US05F2@]       
+  @US05I4@       Max /DeadBeforeDivorced/          M       1960-02-04     1     False    1961-04-03        NA             [@US05F2@]       
   @US21I1@             John /Smith/                M       1957-03-10    62     True         NA            NA        [@US21F1@, @US21F2@]  
-  @US21I2@             Jane /Smith/                M       1960-07-09    38     False    1999-03-27        NA             [@US21F1@]       
+  @US21I2@             Jane /Smith/                M       1960-07-09    29     False    1990-03-27        NA             [@US21F1@]       
   @US21I3@           AnnaBelle /Smith/             F       1981-08-06    37     True         NA        [@US21F1@]         [@US21F2@]       
+  @US35I1@          John /BornRecently/            M       2019-07-10     0     True         NA            NA                 NA           
+  @US36I1@          John /DeadRecently/            M       1999-07-10    20     False    2019-07-18        NA                 NA           
 
 Families
      ID        Married       Divorced     Husband ID             Husband Name             Wife ID               Wife Name                     Children        
     @F1@      1980-05-26        NA           @I1@           Duplicate /McTestman/           @I2@               Jane /Smith/                    [@I3@]         
-    @F2@      200-10-03         NA           @I1@           Duplicate /McTestman/           @I3@            AnnaBelle /Smith/                    NA           
+    @F2@      1992-10-03        NA           @I1@           Duplicate /McTestman/           @I3@            AnnaBelle /Smith/                    NA           
   @US03F1@    2019-06-22        NA         @US03I1@       John /DeadBeforeBornSmith/      @US03I2@      Jane /DeadBeforeBornSmith/           [@US03I3@]       
   @US03F2@    1980-10-03        NA         @US03I1@       John /DeadBeforeBornSmith/      @US03I4@     Jamie /DeadBeforeBornSmith/               NA           
   @US04F1@    1980-05-06    1980-04-07     @US04I1@      John /DivorcedBeforeMarried/     @US04I2@           Mary /Divorced/                     NA           
   @US04F2@    1940-04-04    1970-06-02     @US04I3@     Joshua /DivorcedBeforeMarried/    @US04I4@          Jessica /Married/           [@US04I1@, @US04I5@]  
   @US04F3@    1978-04-02        NA         @US04I5@     Gerald /DivorcedBeforeMarried/    @US04I6@        Stephanie /Irrelevant/                 NA           
+  @US05F1@    1960-06-05        NA         @US05I1@        Josh /DeadBeforeMarried/       @US05I2@          Jane /Irrelevant/                [@US05I3@]       
+  @US05F2@    1990-07-02    1991-10-08     @US05I4@        Max /DeadBeforeDivorced/       @US05I3@      Aidra /DeadBeforeMarried/                NA           
   @US18F1@    2019-06-22        NA         @US04I1@      John /DivorcedBeforeMarried/     @US04I5@    Gerald /DivorcedBeforeMarried/             NA           
   @US21F1@    1980-05-26        NA         @US21I1@              John /Smith/             @US21I2@             Jane /Smith/                  [@US21I3@]       
-  @US21F2@    200-10-03         NA         @US21I1@              John /Smith/             @US21I3@          AnnaBelle /Smith/                    NA           
+  @US21F2@    1992-10-03        NA         @US21I1@              John /Smith/             @US21I3@          AnnaBelle /Smith/                    NA           
 
 US01: WARNING: The following records contain dates/events that happen in the future
 Individuals
@@ -38,18 +46,8 @@ Individuals
 
 US02: WARNING: The following people were married before they were born
 Individuals
-     ID                  Name                Gender     Birthday     Age    Alive      Death         Child              Spouse         
-    @I1@             John /Smith/              M       1957-03-10    62     True         NA            NA            [@F1@, @F2@]      
-    @I3@           AnnaBelle /Smith/           F       1981-08-06    37     True         NA          [@F1@]             [@F2@]         
-  @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27        NA             [@US03F1@]       
-  @US21I1@           John /Smith/              M       1957-03-10    62     True         NA            NA        [@US21F1@, @US21F2@]  
-  @US21I3@         AnnaBelle /Smith/           F       1981-08-06    37     True         NA        [@US21F1@]         [@US21F2@]       
-
-Families
-     ID        Married      Divorced    Husband ID           Husband Name           Wife ID              Wife Name             Children  
-    @F2@      200-10-03        NA          @I1@         Duplicate /McTestman/         @I3@           AnnaBelle /Smith/            NA     
-  @US03F2@    1980-10-03       NA        @US03I1@     John /DeadBeforeBornSmith/    @US03I4@    Jamie /DeadBeforeBornSmith/       NA     
-  @US21F2@    200-10-03        NA        @US21I1@            John /Smith/           @US21I3@         AnnaBelle /Smith/            NA     
+     ID                  Name                Gender     Birthday     Age    Alive      Death       Child      Spouse    
+  @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27     NA      [@US03F1@]  
 
 US03: WARNING: The following people died before they were born
 Individuals
@@ -67,6 +65,38 @@ Families
      ID        Married       Divorced     Husband ID            Husband Name            Wife ID        Wife Name       Children  
   @US04F1@    1980-05-06    1980-04-07     @US04I1@     John /DivorcedBeforeMarried/    @US04I2@    Mary /Divorced/       NA     
 
+US05: WARNING: The following people got married after they died
+Individuals
+     ID                  Name               Gender     Birthday     Age    Alive      Death       Child      Spouse    
+  @US03I1@    John /DeadBeforeBornSmith/      M       1957-03-10    -1     False    1956-03-10     NA    [@US03F1@, @US03F2@]
+  @US03I2@    Jane /DeadBeforeBornSmith/      F       1960-07-09     0     False    1960-03-27     NA      [@US03F1@]  
+  @US05I1@     Josh /DeadBeforeMarried/       M       1940-01-02     0     False    1940-01-03     NA      [@US05F1@]  
+  @US05I4@     Max /DeadBeforeDivorced/       M       1960-02-04     1     False    1961-04-03     NA      [@US05F2@]  
+
+US06: WARNING: The following people got divorced after they died
+Individuals
+     ID                 Name              Gender     Birthday     Age    Alive      Death       Child      Spouse    
+  @US05I4@    Max /DeadBeforeDivorced/      M       1960-02-04     1     False    1961-04-03     NA      [@US05F2@]  
+
+US10: WARING: The following individuals have married while under the age of 14:
+Individuals
+     ID                  Name                Gender     Birthday     Age    Alive      Death         Child         Spouse    
+    @I3@           AnnaBelle /Smith/           F       1981-08-06    37     True         NA          [@F1@]        [@F2@]    
+  @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27        NA        [@US03F1@]  
+  @US21I3@         AnnaBelle /Smith/           F       1981-08-06    37     True         NA        [@US21F1@]    [@US21F2@]  
+
+US12: The following individuals have a parent that is significantly older than them:
+Individuals
+     ID                    Name                 Gender     Birthday     Age    Alive    Death      Child              Spouse         
+  @US04I1@     John /DivorcedBeforeMarried/       M       1957-03-02    62     True      NA      [@US04F2@]    [@US04F1@, @US18F1@]  
+  @US04I5@    Gerald /DivorcedBeforeMarried/      M       1957-06-14    62     True      NA      [@US04F2@]    [@US04F3@, @US18F1@]  
+
+US13: The following individuals have a sibling that was born too close to them:
+Individuals
+     ID                    Name                 Gender     Birthday     Age    Alive    Death      Child              Spouse         
+  @US04I1@     John /DivorcedBeforeMarried/       M       1957-03-02    62     True      NA      [@US04F2@]    [@US04F1@, @US18F1@]  
+  @US04I5@    Gerald /DivorcedBeforeMarried/      M       1957-06-14    62     True      NA      [@US04F2@]    [@US04F3@, @US18F1@]  
+
 US17: WARNING: The following individuals married one of their own children
 Individuals
      ID           Name        Gender     Birthday     Age    Alive    Death    Child           Spouse         
@@ -75,8 +105,8 @@ Individuals
 
 US18: WARNING: The following families have married siblings
 Families
-     ID        Married       Divorced     Husband ID             Husband Name             Wife ID         Wife Name              Children        
-@US18F1@    2019-06-22       NA        @US04I1@     John /DivorcedBeforeMarried/    @US04I5@    Gerald /DivorcedBeforeMarried/       NA       
+     ID        Married      Divorced    Husband ID            Husband Name            Wife ID               Wife Name               Children  
+  @US18F1@    2019-06-22       NA        @US04I1@     John /DivorcedBeforeMarried/    @US04I5@    Gerald /DivorcedBeforeMarried/       NA     
 
 US21: ERROR: The following families have spouses labeled with the wrong gender
 Families
@@ -92,11 +122,14 @@ Individuals
 US29: The following individuals are dead:
 Individuals
      ID                  Name                Gender     Birthday     Age    Alive      Death       Child      Spouse    
-    @I2@             Jane /Smith/              F       1960-07-09    38     False    1999-03-27     NA        [@F1@]    
+    @I2@             Jane /Smith/              F       1960-07-09    29     False    1990-06-12     NA        [@F1@]    
   @US03I1@    John /DeadBeforeBornSmith/       M       1957-03-10    -1     False    1956-03-10     NA    [@US03F1@, @US03F2@]
   @US03I2@    Jane /DeadBeforeBornSmith/       F       1960-07-09     0     False    1960-03-27     NA      [@US03F1@]  
   @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27     NA      [@US03F1@]  
-  @US21I2@           Jane /Smith/              M       1960-07-09    38     False    1999-03-27     NA      [@US21F1@]  
+  @US05I1@     Josh /DeadBeforeMarried/        M       1940-01-02     0     False    1940-01-03     NA      [@US05F1@]  
+  @US05I4@     Max /DeadBeforeDivorced/        M       1960-02-04     1     False    1961-04-03     NA      [@US05F2@]  
+  @US21I2@           Jane /Smith/              M       1960-07-09    29     False    1990-03-27     NA      [@US21F1@]  
+  @US36I1@        John /DeadRecently/          M       1999-07-10    20     False    2019-07-18     NA          NA      
 
 US30: The following individuals living and married:
 Individuals
@@ -106,8 +139,21 @@ Individuals
   @US04I1@     John /DivorcedBeforeMarried/       M       1957-03-02    62     True      NA      [@US04F2@]    [@US04F1@, @US18F1@]  
   @US04I2@           Mary /Divorced/              F       1952-05-02    67     True      NA          NA             [@US04F1@]       
   @US04I3@    Joshua /DivorcedBeforeMarried/      M       1921-08-02    97     True      NA          NA             [@US04F2@]       
-  @US04I4@          Jessica /Married/             F       1924-02-02    95     True      NA          NA             [@US04F2@]       
-  @US04I5@    Gerald /DivorcedBeforeMarried/      M       1958-11-14    60     True      NA      [@US04F2@]    [@US04F3@, @US18F1@]  
+  @US04I4@          Jessica /Married/             F       1874-02-02    145    True      NA          NA             [@US04F2@]       
+  @US04I5@    Gerald /DivorcedBeforeMarried/      M       1957-06-14    62     True      NA      [@US04F2@]    [@US04F3@, @US18F1@]  
   @US04I6@        Stephanie /Irrelevant/          F       1957-07-28    61     True      NA          NA             [@US04F3@]       
+  @US05I2@          Jane /Irrelevant/             F       1940-03-02    79     True      NA          NA             [@US05F1@]       
+  @US05I3@      Aidra /DeadBeforeMarried/         F       1965-04-06    54     True      NA      [@US05F1@]         [@US05F2@]       
   @US21I1@             John /Smith/               M       1957-03-10    62     True      NA          NA        [@US21F1@, @US21F2@]  
-  @US21I3@          AnnaBelle /Smith/             F       1981-08-06    37     True      NA      [@US21F1@]         [@US21F2@]
+  @US21I3@          AnnaBelle /Smith/             F       1981-08-06    37     True      NA      [@US21F1@]         [@US21F2@]       
+
+US35: The following individuals were born in the last 30 days:
+Individuals
+     ID                 Name              Gender     Birthday     Age    Alive      Death       Child      Spouse    
+  @US05I1@    Josh /DeadBeforeMarried/      M       1940-01-02     0     False    1940-01-03     NA      [@US05F1@]  
+  @US35I1@      John /BornRecently/         M       2019-07-10     0     True         NA         NA          NA      
+
+US36: The following individuals died in the last 30 days:
+Individuals
+     ID              Name            Gender     Birthday     Age    Alive      Death       Child    Spouse  
+  @US36I1@    John /DeadRecently/      M       1999-07-10    20     False    2019-07-18     NA        NA    

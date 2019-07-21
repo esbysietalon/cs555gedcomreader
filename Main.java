@@ -181,6 +181,14 @@ public class Main {
         //US09
 
         //US10
+        System.out.print("US10: ");
+        ArrayList<Individual> childSpouses = US10.checkMarriageAges(individuals, families);
+        if (childSpouses.size() > 0) {
+            System.out.println("WARING: The following individuals have married while under the age of 14:");
+            printPeople(childSpouses);
+        } else {
+            System.out.println("No Problems");
+        }
 
         //US12
         System.out.print("US12: ");
