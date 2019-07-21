@@ -179,7 +179,15 @@ public class Main {
         //etc.
 
         //US09
-
+        System.out.print("US09: ");
+        ArrayList<Individual> bornFromZombies = US09.findZombiePregnancy(individuals, families);
+        if (bornFromZombies.size() > 0) {
+            System.out.println("WARING: The following people were concieved or born from dead parents:");
+            printPeople(bornFromZombies);
+        } else {
+            System.out.println("No Problems");
+        }
+        
         //US10
         System.out.print("US10: ");
         ArrayList<Individual> childSpouses = US10.checkMarriageAges(individuals, families);
@@ -312,6 +320,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
+        
     }
 
 
