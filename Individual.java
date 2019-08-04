@@ -207,6 +207,15 @@ public class Individual extends GedcomObject{
       return siblings;
     }
 
+    public ArrayList<Individual> getParents(){
+      ArrayList<Individual> parents = new ArrayList<>();
+      ArrayList<String> fams = getFAMCs();
+      Family f = (Family) Main.getById(fams.get(1))
+      parents.add(getById(f.getWifeId));
+      parents.add(getById(f.getHusbandId));
+      return parents;
+    }
+
     /**
      * Is the Individual alive?
      * @return true if there is no Death Date
