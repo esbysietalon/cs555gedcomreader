@@ -7,7 +7,8 @@ public class US08 {
             for(String id : childrenIds){
                 Individual child = (Individual) Main.getById(id);
                 if ((!f.getDivorceDate().equals("NA") && Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) > 0.75) || (!f.getMarriageDate().equals("-") && Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) < 0)) {
-                    System.out.println("time between divorced and born: " + Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())));
+                    if((!f.getDivorceDate().equals("NA") && Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) > 0.75))
+                        System.out.println("time between divorced and born: " + Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())));
                     usI.add(child);
                 }
             }
