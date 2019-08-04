@@ -10,6 +10,7 @@ public class US33{
         orphans.add(i);
       }
     }
+    return orphans;
   }
 
   public static boolean parentsDead(ArrayList<Individual> parents){
