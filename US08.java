@@ -6,7 +6,7 @@ public class US08 {
             ArrayList<String> childrenIds = f.getChildrenIds();
             for(String id : childrenIds){
                 Individual child = (Individual) Main.getById(id);
-                if ((!f.getDivorceDate().equals("NA") && Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) > 0.75) || Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) < 0) {
+                if ((!f.getDivorceDate().equals("NA") && Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) > 0.75) || (!f.getMarriageDate().equals("-") && Main.getDateDistance(Main.convertDateYMD(f.getMarriageDate().trim()), Main.convertDateYMD(child.getBirthDate().trim())) < 0)) {
                     usI.add(child);
                 }
             }
