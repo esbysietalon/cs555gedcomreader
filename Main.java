@@ -176,6 +176,10 @@ public class Main {
         USOutput deadDivorce = US06.deadDivorce(families);
         printUSOutput(1, "The following people got divorced after they died", deadDivorce);
 
+        //US07
+        System.out.print("US07: ");
+        USOutput superOld = US07.superOld(individuals);
+        printUSOutput(1, "The following people are/were older than 150 while alive", superOld);
         //etc.
 
         //US09
