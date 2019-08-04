@@ -180,7 +180,11 @@ public class Main {
         System.out.print("US07: ");
         USOutput superOld = US07.superOld(individuals);
         printUSOutput(1, "The following people are/were older than 150 while alive", superOld);
-        //etc.
+
+        //US08
+        System.out.print("US08: ");
+        USOutput outOfWedlock = US08.outOfWedlock(families);
+        printUSOutput(1, "The following people were born/conceived out of wedlock", outOfWedlock);
 
         //US09
         System.out.print("US09: ");
