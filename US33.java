@@ -6,7 +6,7 @@ public class US33{
     ArrayList<Individual> orphans = new ArrayList<>();
     for (Individual i : individuals){
       ArrayList<Individual> parents = i.getParents();
-      if (i.getAge < 18 && parentsDead(parents)){
+      if (i.getAge() < 18 && parentsDead(parents)){
         orphans.add(i);
       }
     }
