@@ -10,6 +10,8 @@ public class US30{
     String wID;
   // Nick, put a comment here
    for(Family f : families){
+     if(!f.getDivorceDate().equals("NA"))
+       continue;
      hID = f.getHusbandId();
      wID = f.getWifeId();
      for(Individual i : individuals){
