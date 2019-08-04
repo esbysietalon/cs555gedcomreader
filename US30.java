@@ -16,7 +16,7 @@ public class US30{
     String nowDate = dateFormat.format(date);
     for(Family f : families){
 
-     if(!f.getDivorceDate().equals("NA") && Main.getDateDistance(f.getDivorceDate(), Main.convertDateYMD(nowDate)) > 0)
+     if(!f.getDivorceDate().equals("NA") && Main.getDateDistance(Main.convertDateYMD(f.getDivorceDate()), Main.convertDateYMD(nowDate)) > 0)
        continue;
      hID = f.getHusbandId();
      wID = f.getWifeId();
