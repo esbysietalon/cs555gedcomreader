@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class US30{
@@ -9,8 +11,12 @@ public class US30{
     String hID;
     String wID;
   // Nick, put a comment here
-   for(Family f : families){
-     if(!f.getDivorceDate().equals("NA"))
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Date date = new Date();
+    String nowDate = dateFormat.format(date);
+    for(Family f : families){
+
+     if(!f.getDivorceDate().equals("NA") && Main.getDateDistance(f.getDivorceDate(), Main.convertDateYMD(nowDate)) > 0)
        continue;
      hID = f.getHusbandId();
      wID = f.getWifeId();
