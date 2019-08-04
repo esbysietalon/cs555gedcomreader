@@ -195,7 +195,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-        
+
         //US10
         System.out.print("US10: ");
         ArrayList<Individual> childSpouses = US10.checkMarriageAges(individuals, families);
@@ -309,6 +309,16 @@ public class Main {
             System.out.println("There are no living married people");
         }
 
+        //US33
+        System.out.print("US33: ");
+        ArrayList<Individual> orphans = US33.listOrphans(individuals);
+        if (orphans.size() > 0) {
+            System.out.println("The following individuals are orphans:");
+            printPeople(orphans);
+        } else {
+            System.out.println("No Problems");
+        }
+
         //US35
         System.out.print("US35: ");
         ArrayList<Individual> recentBirths = US35.listRecentBirths(individuals);
@@ -328,7 +338,7 @@ public class Main {
         } else {
             System.out.println("No Problems");
         }
-        
+
     }
 
 

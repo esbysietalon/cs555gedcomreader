@@ -16,8 +16,8 @@ public class Test33{
 
     ArrayList<Individual> orphans = US33.listOrphans(main.getIndividuals());
     ArrayList<String> required = new ArrayList<String>();
-    required.add("@I13@");
-    required.add("@I8@");
+    required.add("@I1@");
+    required.add("@I4@");
 
 
     main.compareIDs(orphans, required);

@@ -210,9 +210,11 @@ public class Individual extends GedcomObject{
     public ArrayList<Individual> getParents(){
       ArrayList<Individual> parents = new ArrayList<>();
       ArrayList<String> fams = getFAMCs();
-      Family f = (Family) Main.getById(fams.get(1));
-      parents.add((Individual)Main.getById(f.getWifeId()));
-      parents.add((Individual)Main.getById(f.getHusbandId()));
+      for(String famID : fams){
+        Family f = (Family) Main.getById(famID);
+        parents.add((Individual)Main.getById(f.getWifeId()));
+        parents.add((Individual)Main.getById(f.getHusbandId()));
+      }
       return parents;
     }
 
