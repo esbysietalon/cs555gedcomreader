@@ -2,7 +2,7 @@ import java.util.*;
 
 public class US33{
 
-  public static ArrayList<Individual> listOrphans(ArrayList<Individual> individuals, ArrayList<Family> families){
+  public static ArrayList<Individual> listOrphans(ArrayList<Individual> individuals){
     ArrayList<Individual> orphans = new ArrayList<>();
     for (Individual i : individuals){
       ArrayList<Individual> parents = i.getParents();
