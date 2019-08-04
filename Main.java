@@ -320,7 +320,25 @@ public class Main {
             }
         }
         
-
+        //US28
+        System.out.print("US28:\n");
+        for(Family f : families) {
+            System.out.print("Family " + f.getId());
+            if(!f.getChildrenIds().isEmpty()) {
+                ArrayList<Individual> children = new ArrayList<>();
+                for(Individual i : individuals) {
+                    if(f.getChildrenIds().contains(i.getId())) {
+                        children.add(i);
+                    }
+                }
+                System.out.print(" has the following children (From oldest to youngest): ");
+                printPeople(US28.orderByAge(children));
+            } else {
+                System.out.println(" has no children.");
+            }
+        }
+        System.out.println();
+        
         //US29
         System.out.print("US29: ");
         ArrayList<Individual> deadPeople = US29.listDeceased(individuals);
