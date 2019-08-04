@@ -288,6 +288,38 @@ public class Main {
         } else if (!duplicateIndividuals) {
             System.out.println("No Problems");
         }
+        
+        //US26
+        System.out.print("US26: ");
+        //check spouses
+        ArrayList<Individual> mismatchedSpousesI = US26.checkIndividualSpouses(individuals, families);
+        ArrayList<Family> mismatchedSpousesF = US26.checkFamilySpouses(individuals, families);
+        //check children
+        ArrayList<Individual> mismatchedChildrenI = US26.checkIndividualChildren(individuals, families);
+        ArrayList<Family> mismatchedChildrenF = US26.checkFamilyChildren(individuals, families);
+        //check for any errors
+        if(mismatchedSpousesI.isEmpty() && mismatchedSpousesF.isEmpty() && mismatchedChildrenI.isEmpty() && mismatchedChildrenF.isEmpty()) {
+            System.out.println("NoProblems");
+        } else { //print out errors in a coherent way
+            System.out.println("Error:");
+            if(!mismatchedSpousesI.isEmpty()) {
+                System.out.println("The following individual records list marriages not present in any family record:");
+                printPeople(mismatchedSpousesI);
+            }
+            if(!mismatchedSpousesF.isEmpty()) {
+                System.out.println("The following family records represent marriages not present in both the spouses' individual records: ");
+                printFamilies(mismatchedSpousesF);
+            }
+            if(!mismatchedChildrenI.isEmpty()) {
+                System.out.println("The following individual records list families that do not list them as children in the corresponding family record: ");
+                printPeople(mismatchedChildrenI);
+            }
+            if(!mismatchedChildrenF.isEmpty()) {
+                System.out.println("The following family records list children that do not list them as families in the corresponding individual records: ");
+                printFamilies(mismatchedChildrenF);
+            }
+        }
+        
 
         //US29
         System.out.print("US29: ");
