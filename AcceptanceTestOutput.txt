@@ -234,6 +234,28 @@ Individuals
   @US21I1@             John /Smith/               M       1957-03-10    62     True      NA          NA        [@US21F1@, @US21F2@]  
   @US21I3@          AnnaBelle /Smith/             F       1981-08-06    37     True      NA      [@US21F1@]         [@US21F2@]       
 
+US33: The following individuals are orphans:
+Individuals
+     ID                  Name                Gender     Birthday     Age    Alive      Death       Child      Spouse    
+    @I1@         Duplicate /McTestman/         M       2020-03-10     0     True         NA         NA          NA      
+  @US03I1@    John /DeadBeforeBornSmith/       M       1957-03-10    -1     False    1956-03-10     NA    [@US03F1@, @US03F2@]
+  @US03I2@    Jane /DeadBeforeBornSmith/       F       1960-07-09     0     False    1960-03-27     NA      [@US03F1@]  
+  @US03I4@    Jamie /DeadBeforeBornSmith/      F       2018-06-20     0     False    2019-03-27     NA      [@US03F1@]  
+  @US05I1@     Josh /DeadBeforeMarried/        M       1940-01-02     0     False    1940-01-03     NA      [@US05F1@]  
+  @US05I4@     Max /DeadBeforeDivorced/        M       1960-02-04     1     False    1961-04-03     NA      [@US05F2@]  
+  @US35I1@        John /BornRecently/          M       2019-07-10     0     True         NA         NA          NA      
+
+US34: The following individuals were twice as old as their spouse when married:
+Individuals
+     ID                  Name               Gender     Birthday     Age    Alive      Death         Child              Spouse         
+    @I1@             John /Smith/             M       1957-03-10    62     True         NA            NA            [@F1@, @F2@]      
+  @US03I2@    Jane /DeadBeforeBornSmith/      F       1960-07-09     0     False    1960-03-27        NA             [@US03F1@]       
+  @US03I1@    John /DeadBeforeBornSmith/      M       1957-03-10    -1     False    1956-03-10        NA        [@US03F1@, @US03F2@]  
+  @US04I4@        Jessica /Married/           F       1874-02-02    145    True         NA            NA             [@US04F2@]       
+  @US05I2@        Jane /Irrelevant/           F       1940-03-02    79     True         NA            NA             [@US05F1@]       
+  @US05I3@    Aidra /DeadBeforeMarried/       F       1965-04-06    54     True         NA        [@US05F1@]         [@US05F2@]       
+  @US21I1@           John /Smith/             M       1957-03-10    62     True         NA            NA        [@US21F1@, @US21F2@]  
+
 US35: The following individuals were born in the last 30 days:
 Individuals
      ID                 Name              Gender     Birthday     Age    Alive      Death       Child      Spouse    
@@ -244,3 +266,4 @@ US36: The following individuals died in the last 30 days:
 Individuals
      ID              Name            Gender     Birthday     Age    Alive      Death       Child    Spouse  
   @US36I1@    John /DeadRecently/      M       1999-07-10    20     False    2019-07-18     NA        NA    
+
