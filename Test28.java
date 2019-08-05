@@ -25,16 +25,16 @@ public class Test28 {
         boolean anomaly4 = false;
 
         //Check that the output from US21 is the expected result, that is: @US08I4@, @US08I3@, @US08I5@, @US08I6@
-	if(!(uso.get(0).getId().equals("@US08I4"))) {
+	if(!(uso.get(0).getId().equals("@US08I4@"))) {
             anomaly1 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(1).getId().equals("@US08I3"))) {
+        if(!(uso.get(1).getId().equals("@US08I3@"))) {
             anomaly2 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(2).getId().equals("@US08I5"))) {
+        if(!(uso.get(2).getId().equals("@US08I5@"))) {
             anomaly3 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(3).getId().equals("@US08I6"))) {
+        if(!(uso.get(3).getId().equals("@US08I6@"))) {
             anomaly4 = true; // if the expected result is not found, flag a problem
         }
 	assertFalse(anomaly1);
