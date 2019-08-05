@@ -319,6 +319,16 @@ public class Main {
             System.out.println("No Problems");
         }
 
+        //US34
+        System.out.print("US34: ");
+        ArrayList<Individual> largeAgesDiffs = US34.listLargeAgeDiffs(families);
+        if (largeAgesDiffs.size() > 0) {
+            System.out.println("The following individuals were twice as old as their spouse when married:");
+            printPeople(largeAgesDiffs);
+        } else {
+            System.out.println("No Problems");
+        }
+
         //US35
         System.out.print("US35: ");
         ArrayList<Individual> recentBirths = US35.listRecentBirths(individuals);

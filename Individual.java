@@ -218,6 +218,7 @@ public class Individual extends GedcomObject{
       return parents;
     }
 
+
     /**
      * Is the Individual alive?
      * @return true if there is no Death Date
