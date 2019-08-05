@@ -14,7 +14,7 @@ public class Test34{
     Main main = new Main();
     main.readData("UserStory34.ged");
 
-    ArrayList<Individual> largeAgesDiffs = US34.listLargeAgeDiffs(main.getIndividuals());
+    ArrayList<Individual> largeAgesDiffs = US34.listLargeAgeDiffs(main.getFamilies());
     ArrayList<String> required = new ArrayList<String>();
     required.add("@I2@");
 
