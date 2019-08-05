@@ -28,13 +28,13 @@ public class Test28 {
 	if(!(uso.get(0).getId().equals("@US08I4"))) {
             anomaly1 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(0).getId().equals("@US08I3"))) {
+        if(!(uso.get(1).getId().equals("@US08I3"))) {
             anomaly2 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(0).getId().equals("@US08I5"))) {
+        if(!(uso.get(2).getId().equals("@US08I5"))) {
             anomaly3 = true; // if the expected result is not found, flag a problem
         }
-        if(!(uso.get(0).getId().equals("@US08I6"))) {
+        if(!(uso.get(3).getId().equals("@US08I6"))) {
             anomaly4 = true; // if the expected result is not found, flag a problem
         }
 	assertFalse(anomaly1);
