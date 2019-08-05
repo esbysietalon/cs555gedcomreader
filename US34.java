@@ -13,7 +13,7 @@ public class US34{
     int wifeAgeWhenMarried;
 
     for (Family f : families){
-      if(f.getMarriageDate() != ""){
+      if(f.getMarriageDate() != "-"){
         husband = (Individual) Main.getById(f.getHusbandId());
         wife = (Individual) Main.getById(f.getWifeId());
         husbandAge = husband.getAgeInDays();
